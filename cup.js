@@ -26,15 +26,28 @@ function Cup(numberOfPlayers) {
         this.drawWinnerOfCup(round);
         
     };
+    
+    this.addPlayer = function(id, name) {
+        this.getElementByMatchId(id).find('.name').html(name);
+    };
+    
+    this.advancePlayerToNextRound = function(name) {
+        var $element = $( "div:contains('"+name+"')" ).last();
+        //...
+    };
+    
+    this.getElementByMatchId = function(matchId) {
+        return $('div[id="'+matchId+'"]');
+    };
 
     this.getElementByMatchId = function(matchId) {
         return $('div[id="'+matchId+'"]');
-    }
+    };
 
     this.getCoordinatesByMatchId = function(matchId) {
         var $element = this.getElementByMatchId(matchId);
         return this.getCoordinates($element);
-    }
+    };
 
     this.getCoordinates = function($element) {
 
@@ -42,11 +55,11 @@ function Cup(numberOfPlayers) {
         var y = $element.offset().top + $element.height()/2.0;
         
         return {x:x,y:y};
-    }
+    };
 
     this.setName = function(matchId, name) {
         getElementByMatchId(matchId).find('.name').html(name);
-    }
+    };
 
     this.setWinner = function(winnerId, loserId, proceedId, name) {
         getElementByMatchId(winnerId).addClass('winner');
@@ -55,11 +68,11 @@ function Cup(numberOfPlayers) {
         if (proceedId !== 0) {
             getElementByMatchId(proceedId).find('.name').html(name);	
         }
-    }
+    };
 
     this.setTrophyWinner = function(winnerId) {
         getElementByMatchId(winnerId).addClass('trophy');
-    }
+    };
 
     this.getCoordinatesCss = function($element) {
 
@@ -67,7 +80,7 @@ function Cup(numberOfPlayers) {
         var y = parseInt( $element.css('top') )
         
         return {x:x,y:y}
-    }
+    };
 
     this.addConnector = function(matchId1, matchId2, longVersion) {
 
@@ -88,7 +101,7 @@ function Cup(numberOfPlayers) {
             .css('left', (coords1.x-offset))
             
         $connector.appendTo('body')
-    }
+    };
 
     this.drawPair = function(round, pair) {
 
@@ -100,14 +113,14 @@ function Cup(numberOfPlayers) {
             this.drawPairForRound(round, pair);
         }
 
-    }
+    };
     
     this.drawWinnerOfCup = function(round) {
         var id = 'winner';
         var parents = this.getParentsId(round, 1, true);
         
         this.drawWinner(id, parents);
-    }
+    };
     
     this.drawWinner = function(ownId, parents) {
         
@@ -124,7 +137,7 @@ function Cup(numberOfPlayers) {
             .css('left', (first_coords.x+second_coords.x)/2.0 + roundOffset + 'px')
             .css('top',  (first_coords.y+second_coords.y)/2.0 + 'px');
             
-    }
+    };
     
     this.getParentsId = function(ownRound, ownPair, isFirst) {
     
@@ -140,7 +153,7 @@ function Cup(numberOfPlayers) {
         var second_parent = parentRound + '_' + parentPair  + '_b';
         
         return {a:first_parent, b:second_parent};
-    }
+    };
     
     this.drawPairForRound = function(round, pair) {
     
@@ -155,7 +168,7 @@ function Cup(numberOfPlayers) {
             
         this.addConnector(a_id, b_id);
         
-    }
+    };
     
     this.drawPairForFirstRound = function(round, pair) {
     
@@ -185,6 +198,6 @@ function Cup(numberOfPlayers) {
             .css('top', offset_second_y+'px');
         
         this.addConnector(firstId, secondId);
-    }
+    };
 
 }

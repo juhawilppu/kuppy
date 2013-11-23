@@ -5,8 +5,12 @@
 <link rel="stylesheet" type="text/css" href="cup.css" />
 <script type="text/javascript">
     $(document).ready( function() {
-        var testCup = new Cup(16);
+        testCup = new Cup(8);
         testCup.buildBracket();
+        
+        testCup.addPlayer('1_1_a', 'Juha');
+        testCup.addPlayer('1_1_b', 'Janne');
+        testCup.addPlayer('2_1_a', 'Juha');
     });
 </script>
 </head>
