@@ -4,6 +4,12 @@
 <script src="cup.js"></script>
 <link rel="stylesheet" type="text/css" href="cup.css" />
 </head>
+<script>
+    $(document).ready( function() {
+        var testCup = new Cup(16);
+        testCup.buildBracket();
+    });
+</script>
 <body>
 
 <div id="tournament"></div>
