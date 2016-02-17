@@ -1,13 +1,8 @@
-body {
-	font-family: 'Fjalla One', sans-serif;
-}
-
-
 #tournament {
 	position: relative;
 }
 
-.box {
+.cupjs .box {
 
 	text-align: center;
 	vertical-align: middle;
@@ -33,29 +28,17 @@ body {
 	
 }
 
-.winner {
-	background: green;
-}
-
-.loser {
-	background: red;
-}
-
-.trophy {
-	background: yellow;
-}
-
-.box .name {
+.cupjs .box .name {
 	text-align: center;
+	font-family: 'Fjalla One', sans-serif;
 }
 
-.box .score {
+.cupjs .box .score {
 	text-align: right;
 	margin-right: 1em;
 }
 
-
-.stage {
+.cupjs .stage {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
@@ -70,21 +53,13 @@ body {
 	z-index: -1;
 }
 
-.winner {
+.cupjs .winner {
 	position: absolute;
 	margin-top:0;
 	margin-bottom:0;
 }
 
-.connector1 {
-	z-index: -1;
-}
-
-.connector2 {
-	z-index: -2;
-}
-
-.spacing {
+.cupjs .spacing {
 	width: 50px;
 	height: 50px;
 }

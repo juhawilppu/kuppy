@@ -1,10 +1,24 @@
+/*
+ * CupJS -- library for building a cup bracket for a tournament.
+ * 
+ * Copyright 2016 Juha Rajajärvi
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ */
 
-function Cup(numberOfPlayers) {
 
-    this.$tournament = $('#tournament');
+function Cup(elementId, numberOfPlayers) {
+
+    this.$tournament = $(elementId);	
+	this.$tournament.addClass('cupjs');	
     this.numberOfPlayers = numberOfPlayers;
 
-
+	this.pairMarginFactor = 1.6;
+    this.groupMarginFactor = 4;
+	
+	/** Public methods **/
+	
     this.buildBracket = function() {
 
         var round = 0;
@@ -26,19 +40,26 @@ function Cup(numberOfPlayers) {
     };
     
     this.addPlayer = function(id, name) {
-        this.getElementByMatchId(id).find('.name').html(name);
+        this._getElementByMatchId(id).find('.name').html(name);
     };
     
-    this.getElementByMatchId = function(matchId) {
+	this.setWinner = function(name) {
+        _getElementByMatchId(winnerId).addClass('winner');
+    };
+	
+	
+	/** Private methods **/
+	
+    this._getElementByMatchId = function(matchId) {
         return $('div[id="'+matchId+'"]');
     };
 
-    this.getCoordinatesByMatchId = function(matchId) {
-        var $element = this.getElementByMatchId(matchId);
-        return this.getCoordinates($element);
+    this._getCoordinatesByMatchId = function(matchId) {
+        var $element = this._getElementByMatchId(matchId);
+        return this._getCoordinates($element);
     };
 
-    this.getCoordinates = function($element) {
+    this._getCoordinates = function($element) {
 
         var x = $element.offset().left + $element.width();
         var y = $element.offset().top + $element.height()/2.0;
@@ -46,19 +67,7 @@ function Cup(numberOfPlayers) {
         return {x:x,y:y};
     };
 
-    this.setName = function(matchId, name) {
-        getElementByMatchId(matchId).find('.name').html(name);
-    };
-
-    this.setWinner = function(name) {
-        getElementByMatchId(winnerId).addClass('winner');
-    };
-
-    this.setTrophyWinner = function(winnerId) {
-        getElementByMatchId(winnerId).addClass('trophy');
-    };
-
-    this.getCoordinatesCss = function($element) {
+    this._getCoordinatesCss = function($element) {
 
         var x = $element.offset().left + $element.width();
         var y = parseInt( $element.css('top') )
@@ -66,16 +75,16 @@ function Cup(numberOfPlayers) {
         return {x:x,y:y}
     };
 
-    this.addConnector = function(matchId1, matchId2, longVersion) {
+    this._addConnector = function(matchId1, matchId2, longVersion) {
 
         var offset = 0;
 
         if ( longVersion === true ) {
-            offset = this.getElementByMatchId(matchId1).width();
+            offset = this._getElementByMatchId(matchId1).width();
         }
 
-        var coords1 = this.getCoordinatesByMatchId(matchId1),
-            coords2 = this.getCoordinatesByMatchId(matchId2),
+        var coords1 = this._getCoordinatesByMatchId(matchId1),
+            coords2 = this._getCoordinatesByMatchId(matchId2),
             $connector = $('<div class="connector"></div>');
 
         $connector
@@ -84,7 +93,7 @@ function Cup(numberOfPlayers) {
             .css('top', coords1.y)
             .css('left', (coords1.x-offset))
             
-        $connector.appendTo('body')
+        $connector.appendTo('body');
     };
 
     this._drawPair = function(round, pair) {
@@ -99,7 +108,7 @@ function Cup(numberOfPlayers) {
     
     this._drawWinnerOfCup = function(round) {
         var id = 'winner';
-        var parents = this.getParentsId(round, 1, true);
+        var parents = this._getParentsId(round, 1, true);
         
         this._drawWinner(id, parents);
     };
@@ -112,8 +121,8 @@ function Cup(numberOfPlayers) {
         
         var roundOffset = $element.width()/2.0;
                 
-        var first_coords = this.getCoordinatesCss( $("div[id='"+parents.a+"']") ),
-            second_coords = this.getCoordinatesCss( $("div[id='"+parents.b+"']") );
+        var first_coords = this._getCoordinatesCss( $("div[id='"+parents.a+"']") ),
+            second_coords = this._getCoordinatesCss( $("div[id='"+parents.b+"']") );
                 
         $element
             .css('left', (first_coords.x+second_coords.x)/2.0 + roundOffset + 'px')
@@ -121,7 +130,7 @@ function Cup(numberOfPlayers) {
             
     };
     
-    this.getParentsId = function(ownRound, ownPair, isFirst) {
+    this._getParentsId = function(ownRound, ownPair, isFirst) {
     
         var parentRound = ownRound-1;
         
@@ -142,13 +151,13 @@ function Cup(numberOfPlayers) {
         var a_id = round + '_' + pair + '_a';
         var b_id = round + '_' + pair + '_b';
 
-        var a_parents = this.getParentsId(round, pair, true);
-        var b_parents = this.getParentsId(round, pair, false);
+        var a_parents = this._getParentsId(round, pair, true);
+        var b_parents = this._getParentsId(round, pair, false);
 
         this._drawWinner(a_id, a_parents);
         this._drawWinner(b_id, b_parents);    
             
-        this.addConnector(a_id, b_id);
+        this._addConnector(a_id, b_id);
         
     };
     
@@ -162,16 +171,12 @@ function Cup(numberOfPlayers) {
                 
         $firstPlayer.appendTo( this.$tournament );
         $secondPlayer.appendTo( this.$tournament );
-    
-        var pairMarginFactor = 1.6,
-        groupMarginFactor = 4,
-        roundMarginFactor = 3;
             
         var elementHeight = $firstPlayer.height();
         var elementWidth = $firstPlayer.width();
             
-        var offset_first_y = (pair-1)*(elementHeight*groupMarginFactor);
-        var offset_second_y = offset_first_y+ elementHeight*pairMarginFactor;
+        var offset_first_y = (pair-1)*(elementHeight*this.groupMarginFactor);
+        var offset_second_y = offset_first_y+ elementHeight*this.pairMarginFactor;
         
         $firstPlayer
             .css('top', offset_first_y+'px');
@@ -179,7 +184,7 @@ function Cup(numberOfPlayers) {
         $secondPlayer
             .css('top', offset_second_y+'px');
         
-        this.addConnector(firstId, secondId);
+        this._addConnector(firstId, secondId);
     };
 
 }
