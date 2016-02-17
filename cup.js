@@ -13,17 +13,15 @@ function Cup(numberOfPlayers) {
         do {
             round++;
 
-            playersLeft = this.numberOfPlayers / Math.pow(2, round-1);
-                
-                console.log(playersLeft);
+            playersLeft = this.numberOfPlayers / Math.pow(2, round-1);                
             
             for (var pair=1; pair <= playersLeft/2; pair++) {
-                this.drawPair(round, pair);
+                this._drawPair(round, pair);
             }
         
         } while ( playersLeft !== 1);
         
-        this.drawWinnerOfCup(round);
+        this._drawWinnerOfCup(round);
         
     };
     
@@ -31,15 +29,6 @@ function Cup(numberOfPlayers) {
         this.getElementByMatchId(id).find('.name').html(name);
     };
     
-    this.advancePlayerToNextRound = function(name) {
-        var $element = $( "div:contains('"+name+"')" ).last();
-        //...
-    };
-    
-    this.getElementByMatchId = function(matchId) {
-        return $('div[id="'+matchId+'"]');
-    };
-
     this.getElementByMatchId = function(matchId) {
         return $('div[id="'+matchId+'"]');
     };
@@ -61,13 +50,8 @@ function Cup(numberOfPlayers) {
         getElementByMatchId(matchId).find('.name').html(name);
     };
 
-    this.setWinner = function(winnerId, loserId, proceedId, name) {
+    this.setWinner = function(name) {
         getElementByMatchId(winnerId).addClass('winner');
-        getElementByMatchId(loserId).addClass('loser');
-        
-        if (proceedId !== 0) {
-            getElementByMatchId(proceedId).find('.name').html(name);	
-        }
     };
 
     this.setTrophyWinner = function(winnerId) {
@@ -103,26 +87,24 @@ function Cup(numberOfPlayers) {
         $connector.appendTo('body')
     };
 
-    this.drawPair = function(round, pair) {
-
-        console.log(round, pair);
+    this._drawPair = function(round, pair) {
 
         if ( round === 1 ) {
-            this.drawPairForFirstRound(round, pair);
+            this._drawPairForFirstRound(round, pair);
         } else {
-            this.drawPairForRound(round, pair);
+            this._drawPairForRound(round, pair);
         }
 
     };
     
-    this.drawWinnerOfCup = function(round) {
+    this._drawWinnerOfCup = function(round) {
         var id = 'winner';
         var parents = this.getParentsId(round, 1, true);
         
-        this.drawWinner(id, parents);
+        this._drawWinner(id, parents);
     };
     
-    this.drawWinner = function(ownId, parents) {
+    this._drawWinner = function(ownId, parents) {
         
         var $element = $('<div id="'+ownId+'" class="box"><div class="name"></div><div class="score"></div></div>');
     
@@ -155,7 +137,7 @@ function Cup(numberOfPlayers) {
         return {a:first_parent, b:second_parent};
     };
     
-    this.drawPairForRound = function(round, pair) {
+    this._drawPairForRound = function(round, pair) {
     
         var a_id = round + '_' + pair + '_a';
         var b_id = round + '_' + pair + '_b';
@@ -163,14 +145,14 @@ function Cup(numberOfPlayers) {
         var a_parents = this.getParentsId(round, pair, true);
         var b_parents = this.getParentsId(round, pair, false);
 
-        this.drawWinner(a_id, a_parents);
-        this.drawWinner(b_id, b_parents);    
+        this._drawWinner(a_id, a_parents);
+        this._drawWinner(b_id, b_parents);    
             
         this.addConnector(a_id, b_id);
         
     };
     
-    this.drawPairForFirstRound = function(round, pair) {
+    this._drawPairForFirstRound = function(round, pair) {
     
         var firstId = round + '_' + pair + '_a';
         var secondId = round + '_' + pair + '_b';

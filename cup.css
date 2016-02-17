@@ -1,3 +1,8 @@
+body {
+	font-family: 'Fjalla One', sans-serif;
+}
+
+
 #tournament {
 	position: relative;
 }
@@ -7,22 +12,14 @@
 	text-align: center;
 	vertical-align: middle;
 
-	border:2px solid;
-	border-radius:10px;
+	border:1px solid;
+	border-radius:5px;
 
-	background: rgb(206,220,231); /* Old browsers */
-	background: -moz-radial-gradient(center, ellipse cover,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* IE10+ */
-	background: radial-gradient(ellipse at center,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  
--webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.25);
--moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.25);
-box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.25);
-
+	background: rgb(255,255,255);
+	background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(232,232,232,1) 100%);
+	background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(232,232,232,1) 100%);
+	background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(232,232,232,1) 100%);
+	
 	width: 100px;
 	height: 30px;
 	
@@ -30,10 +27,9 @@ box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.25);
 	
 	position: absolute;
 	
-	font-family: verdana;
 	
 	line-height: 30px;
-	font-size: 15px;
+	font-size: 17px;
 	
 }
 
@@ -51,7 +47,6 @@ box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.25);
 
 .box .name {
 	text-align: center;
-/*	margin-left: 1em;*/
 }
 
 .box .score {
@@ -68,9 +63,9 @@ box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.25);
 .connector {
 	border-top-right-radius:5px;
 	border-bottom-right-radius:5px;
-	border-top: 2px solid black;
-	border-right: 2px solid black;
-	border-bottom: 2px solid black;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
 	position: absolute;
 	z-index: -1;
 }
