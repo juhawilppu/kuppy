@@ -14,8 +14,12 @@ function Cup(elementId, numberOfPlayers) {
 	this.$tournament.addClass('cupjs');	
     this.numberOfPlayers = numberOfPlayers;
 
-	this.pairMarginFactor = 1.6;
-    this.groupMarginFactor = 4;
+	/* Distance between two players that form a pair. */
+	this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 1.6;
+	
+	/* Distance between two pairs. */
+    this.DISTANCE_BETWEEN_PAIRS = 4;
+	
 	
 	/** Public methods **/
 	
@@ -115,7 +119,7 @@ function Cup(elementId, numberOfPlayers) {
     
     this._drawWinner = function(ownId, parents) {
         
-        var $element = $('<div id="'+ownId+'" class="box"><div class="name"></div><div class="score"></div></div>');
+        var $element = $('<div id="'+ownId+'" class="box"><div class="name"></div></div>');
     
         $element.appendTo( this.$tournament );
         
@@ -175,8 +179,8 @@ function Cup(elementId, numberOfPlayers) {
         var elementHeight = $firstPlayer.height();
         var elementWidth = $firstPlayer.width();
             
-        var offset_first_y = (pair-1)*(elementHeight*this.groupMarginFactor);
-        var offset_second_y = offset_first_y+ elementHeight*this.pairMarginFactor;
+        var offset_first_y = (pair-1)*(elementHeight*this.DISTANCE_BETWEEN_PAIRS);
+        var offset_second_y = offset_first_y+ elementHeight*this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR;
         
         $firstPlayer
             .css('top', offset_first_y+'px');
