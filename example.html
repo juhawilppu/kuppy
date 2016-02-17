@@ -1,12 +1,12 @@
-CupJS
-=====
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="cup.js"></script>
+<link rel="stylesheet" type="text/css" href="cup.css" />
+<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
-JavaScript library to build a cup bracket. Takes the number of participants (4, 8, 16, 32, etc.) as a parameter. Create a div with id "tournament".
-
-See example: https://rawgithub.com/juharajajarvi/cupjs/master/example.html
-
-Usage:
-```javascript
+<script type="text/javascript">
+    $(document).ready( function() {
         var testCup = new Cup(8);
         testCup.buildBracket();
         
@@ -31,5 +31,15 @@ Usage:
         testCup.addPlayer('3_1_a', 'Michael');		
 		testCup.addPlayer('3_1_b', 'Theo');			
 
-        testCup.addPlayer('winner', 'Theo');
-```
+        testCup.addPlayer('winner', 'Theo');				
+		
+    });
+</script>
+
+</head>
+<body>
+
+<div id="tournament"></div>
+
+</body>
+</html>
