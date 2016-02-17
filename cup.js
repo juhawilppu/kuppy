@@ -144,16 +144,16 @@ function Cup(elementId, numberOfPlayers) {
             parentPair--;
         }
     
-        var first_parent = parentRound + '_' + parentPair  + '_a';
-        var second_parent = parentRound + '_' + parentPair  + '_b';
+        var first_parent = parentRound + '_' + parentPair  + '_UPPER';
+        var second_parent = parentRound + '_' + parentPair  + '_BOTTOM';
         
         return {a:first_parent, b:second_parent};
     };
     
     this._drawPairForRound = function(round, pair) {
     
-        var a_id = round + '_' + pair + '_a';
-        var b_id = round + '_' + pair + '_b';
+        var a_id = round + '_' + pair + '_UPPER';
+        var b_id = round + '_' + pair + '_BOTTOM';
 
         var a_parents = this._getParentsId(round, pair, true);
         var b_parents = this._getParentsId(round, pair, false);
@@ -167,8 +167,8 @@ function Cup(elementId, numberOfPlayers) {
     
     this._drawPairForFirstRound = function(round, pair) {
     
-        var firstId = round + '_' + pair + '_a';
-        var secondId = round + '_' + pair + '_b';
+        var firstId = round + '_' + pair + '_UPPER';
+        var secondId = round + '_' + pair + '_BOTTOM';
         
         var $firstPlayer = $('<div id="'+firstId+'" class="box"><div class="name"></div><div class="score"></div></div>');
         var $secondPlayer = $('<div id="'+secondId+'" class="box"><div class="name"></div><div class="score"></div></div>');
