@@ -10,26 +10,27 @@ Usage:
         var testCup = new Cup(8);
         testCup.buildBracket();
         
-        testCup.addPlayer('1_1_a', 'Jake');
-        testCup.addPlayer('1_1_b', 'Patrick');
+        testCup.addPlayer(1,1,'UPPER', 'Jake');
+        testCup.addPlayer(1,1,'BOTTOM', 'Patrick');
 
-		testCup.addPlayer('1_2_a', 'Michael');
-        testCup.addPlayer('1_2_b', 'Nigel');
+		testCup.addPlayer(1,2,'UPPER', 'Michael');
+        testCup.addPlayer(1,2,'BOTTOM', 'Nigel');
 		
-		testCup.addPlayer('1_3_a', 'Robin');
-        testCup.addPlayer('1_3_b', 'Peter');
+		testCup.addPlayer(1,3,'UPPER', 'Robin');
+        testCup.addPlayer(1,3,'BOTTOM', 'Peter');
 
-		testCup.addPlayer('1_4_a', 'Aaron');
-        testCup.addPlayer('1_4_b', 'Theo');
+		testCup.addPlayer(1,4,'UPPER', 'Aaron');
+        testCup.addPlayer(1,4,'BOTTOM', 'Theo');
 		
-        testCup.addPlayer('2_1_a', 'Jake');		
-		testCup.addPlayer('2_1_b', 'Michael');
+        testCup.addPlayer(2,1,'UPPER', 'Jake');		
+		testCup.addPlayer(2,1,'BOTTOM', 'Michael');
 
-        testCup.addPlayer('2_2_a', 'Robin');		
-		testCup.addPlayer('2_2_b', 'Theo');		
+        testCup.addPlayer(2,2,'UPPER', 'Robin');		
+		testCup.addPlayer(2,2,'BOTTOM', 'Theo');		
 
-        testCup.addPlayer('3_1_a', 'Michael');		
-		testCup.addPlayer('3_1_b', 'Theo');			
+        testCup.addPlayer(3,1,'UPPER', 'Michael');		
+		testCup.addPlayer(3,1,'BOTTOM', 'Theo');
 
-        testCup.addPlayer('winner', 'Theo');
+        testCup.setWinner('Theo');
+		
 ```

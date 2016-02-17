@@ -20,6 +20,9 @@ function Cup(elementId, numberOfPlayers) {
 	/* Distance between two pairs. */
     this.DISTANCE_BETWEEN_PAIRS = 4;
 	
+	/* Words for pair */
+	this.UPPER = 'UPPER';
+	this.BOTTOM = 'BOTTOM';	
 	
 	/** Public methods **/
 	
@@ -43,12 +46,12 @@ function Cup(elementId, numberOfPlayers) {
         
     };
     
-    this.addPlayer = function(id, name) {
-        this._getElementByMatchId(id).find('.name').html(name);
+    this.addPlayer = function(round, pair, part, name) {
+        this._getElementByMatchId(round+'_'+pair+'_'+part).find('.name').html(name);
     };
     
 	this.setWinner = function(name) {
-        _getElementByMatchId(winnerId).addClass('winner');
+        this._getElementByMatchId('winner').find('.name').html(name);
     };
 	
 	
@@ -144,16 +147,16 @@ function Cup(elementId, numberOfPlayers) {
             parentPair--;
         }
     
-        var first_parent = parentRound + '_' + parentPair  + '_UPPER';
-        var second_parent = parentRound + '_' + parentPair  + '_BOTTOM';
+        var first_parent = parentRound + '_' + parentPair  + '_' + this.UPPER;
+        var second_parent = parentRound + '_' + parentPair  + '_' + this.BOTTOM;
         
         return {a:first_parent, b:second_parent};
     };
     
     this._drawPairForRound = function(round, pair) {
     
-        var a_id = round + '_' + pair + '_UPPER';
-        var b_id = round + '_' + pair + '_BOTTOM';
+        var a_id = round + '_' + pair + '_' + this.UPPER;
+        var b_id = round + '_' + pair + '_' + this.BOTTOM;
 
         var a_parents = this._getParentsId(round, pair, true);
         var b_parents = this._getParentsId(round, pair, false);
@@ -167,8 +170,8 @@ function Cup(elementId, numberOfPlayers) {
     
     this._drawPairForFirstRound = function(round, pair) {
     
-        var firstId = round + '_' + pair + '_UPPER';
-        var secondId = round + '_' + pair + '_BOTTOM';
+        var firstId = round + '_' + pair + '_' + this.UPPER;
+        var secondId = round + '_' + pair + '_' + this.BOTTOM;
         
         var $firstPlayer = $('<div id="'+firstId+'" class="box"><div class="name"></div><div class="score"></div></div>');
         var $secondPlayer = $('<div id="'+secondId+'" class="box"><div class="name"></div><div class="score"></div></div>');
