@@ -4,8 +4,9 @@ CupJS
 JavaScript library to build a cup bracket.
 
 **Features**
-*Supports any number of participants (4, 8, 16, 32, etc).
-*Proceed players to following rounds by clicking the name of the player. Also possible by calling the JavaScript object.
+
+-Supports any number of participants (4, 8, 16, 32, etc).
+-Proceed players to following rounds by clicking the name of the player. Also possible by calling the JavaScript object.
 
 See it in action: https://rawgithub.com/juharajajarvi/cupjs/master/example.html
 
