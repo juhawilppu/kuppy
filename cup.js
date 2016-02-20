@@ -14,7 +14,7 @@ function Cup(elementId, numberOfPlayers) {
 	this.numberOfPlayers = numberOfPlayers;
 
 	/* Distance between two players that form a pair. */
-	this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 1.6;
+	this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 0.2;
 
 	/* Distance between two pairs. */
 	this.DISTANCE_BETWEEN_PAIRS = 4;
@@ -131,9 +131,7 @@ function Cup(elementId, numberOfPlayers) {
 	this._drawWinner = function (round, pair, upperBottom, parents) {
 
 		var $element = this._createPlayerBoxElement(round, pair, upperBottom);
-
 		$element.appendTo(this.$tournament);
-		
 		this._addClickListenerForProceedingToNextLevel($element);
 
 		var roundOffset = $element.width() * this.DISTANCE_BETWEEN_ROUNDS;
@@ -210,7 +208,7 @@ function Cup(elementId, numberOfPlayers) {
 		var elementWidth = $firstPlayer.width();
 
 		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS);
-		var offset_second_y = offset_first_y + elementHeight * this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR;
+		var offset_second_y = offset_first_y + elementHeight * (1+this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR);
 
 		$firstPlayer
 		.css('top', offset_first_y + 'px');
