@@ -1,7 +1,7 @@
 CupJS
 =====
 
-JavaScript library to build a cup bracket.
+JavaScript library for building a cup bracket.
 
 **Features**
 - Supports any number of participants (4, 8, 16, 32, etc).
