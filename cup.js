@@ -124,9 +124,7 @@ function Cup(elementId, numberOfPlayers) {
 	};
 
 	this._drawWinnerOfCup = function (round) {
-		var id = 'winner';
 		var parents = this._getParentsId(round, 1, true);
-
 		this._drawWinner(round, 1, this.UPPER, parents);
 	};
 

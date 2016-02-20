@@ -15,64 +15,64 @@
   
   <script type="text/javascript">  
 	$(document).ready( function() {
-        testCup = new Cup('#tournament', 8);
-        testCup.buildBracket();
+        cup = new Cup('#tournament', 8);
+        cup.buildBracket();
 		fillFirstRound();
     });
   
 	var fillFirstRound = function() {
-		testCup.addPlayer(1,1,'UPPER', 'Jake');
-		testCup.addPlayer(1,1,'BOTTOM', 'Patrick');
+		cup.addPlayer(1, 1, 'UPPER', 'Jake');
+		cup.addPlayer(1, 1, 'BOTTOM', 'Patrick');
 
-		testCup.addPlayer(1,2,'UPPER', 'Michael');
-		testCup.addPlayer(1,2,'BOTTOM', 'Nigel');
+		cup.addPlayer(1, 2, 'UPPER', 'Michael');
+		cup.addPlayer(1, 2, 'BOTTOM', 'Nigel');
 
-		testCup.addPlayer(1,3,'UPPER', 'Robin');
-		testCup.addPlayer(1,3,'BOTTOM', 'Peter');
+		cup.addPlayer(1, 3, 'UPPER', 'Robin');
+		cup.addPlayer(1, 3, 'BOTTOM', 'Peter');
 
-		testCup.addPlayer(1,4,'UPPER', 'Aaron');
-		testCup.addPlayer(1,4,'BOTTOM', 'Theo');
+		cup.addPlayer(1, 4, 'UPPER', 'Aaron');
+		cup.addPlayer(1, 4, 'BOTTOM', 'Theo');
 	}
   
 	var fill = function() {
 		
 		fillFirstRound();
 		
-		testCup.addPlayer(2,1,'UPPER', 'Jake');         
-		testCup.addPlayer(2,1,'BOTTOM', 'Michael');
+		cup.addPlayer(2, 1, 'UPPER', 'Jake');         
+		cup.addPlayer(2, 1, 'BOTTOM', 'Michael');
 
-		testCup.addPlayer(2,2,'UPPER', 'Robin');                
-		testCup.addPlayer(2,2,'BOTTOM', 'Theo');                
+		cup.addPlayer(2, 2, 'UPPER', 'Robin');                
+		cup.addPlayer(2, 2, 'BOTTOM', 'Theo');                
 
-		testCup.addPlayer(3,1,'UPPER', 'Michael');              
-		testCup.addPlayer(3,1,'BOTTOM', 'Theo');
+		cup.addPlayer(3, 1, 'UPPER', 'Michael');              
+		cup.addPlayer(3, 1, 'BOTTOM', 'Theo');
 
-		testCup.setWinner('Theo');                              
+		cup.addPlayer(4, 1, 'UPPER', 'Theo');                       
 	}
 	
 	var clearN = function() {
-		testCup.addPlayer(1,1,'UPPER', '');
-		testCup.addPlayer(1,1,'BOTTOM', '');
+		cup.addPlayer(1,1,'UPPER', '');
+		cup.addPlayer(1,1,'BOTTOM', '');
 
-		testCup.addPlayer(1,2,'UPPER', '');
-		testCup.addPlayer(1,2,'BOTTOM', '');
+		cup.addPlayer(1,2,'UPPER', '');
+		cup.addPlayer(1,2,'BOTTOM', '');
 
-		testCup.addPlayer(1,3,'UPPER', '');
-		testCup.addPlayer(1,3,'BOTTOM', '');
+		cup.addPlayer(1,3,'UPPER', '');
+		cup.addPlayer(1,3,'BOTTOM', '');
 
-		testCup.addPlayer(1,4,'UPPER', '');
-		testCup.addPlayer(1,4,'BOTTOM', '');
+		cup.addPlayer(1,4,'UPPER', '');
+		cup.addPlayer(1,4,'BOTTOM', '');
 
-		testCup.addPlayer(2,1,'UPPER', '');         
-		testCup.addPlayer(2,1,'BOTTOM', '');
+		cup.addPlayer(2,1,'UPPER', '');         
+		cup.addPlayer(2,1,'BOTTOM', '');
 
-		testCup.addPlayer(2,2,'UPPER', '');                
-		testCup.addPlayer(2,2,'BOTTOM', '');                
+		cup.addPlayer(2,2,'UPPER', '');                
+		cup.addPlayer(2,2,'BOTTOM', '');                
 
-		testCup.addPlayer(3,1,'UPPER', '');              
-		testCup.addPlayer(3,1,'BOTTOM', '');
+		cup.addPlayer(3,1,'UPPER', '');              
+		cup.addPlayer(3,1,'BOTTOM', '');
 
-		testCup.setWinner('');
+		cup.addPlayer(4, 1, 'UPPER', '');
 	}
   
   </script>
