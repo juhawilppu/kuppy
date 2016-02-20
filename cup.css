@@ -21,11 +21,11 @@
 	z-index: 2;
 	
 	position: absolute;
-	
-	
+		
 	line-height: 30px;
 	font-size: 17px;
 	
+	cursor: pointer;
 }
 
 .cupjs .box .name {
