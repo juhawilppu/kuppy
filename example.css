@@ -11,3 +11,7 @@ body {
 	font-size: 25px;
 	font-family: 'Fjalla One', sans-serif;
 }
+
+.guide.hidden {
+	display:none;
+}

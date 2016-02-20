@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <!-- Imports needed by CupJS -->
+  <script src="cupjs/cup.js"></script>
+  <link rel="stylesheet" type="text/css" href="cupjs/cup.css">
+  <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    
+  <!-- Other imports -->
+  <link rel="stylesheet" type="text/css" href="example.css">
+  
+  <script type="text/javascript">  
+
+  	$(document).ready( function() {	
+		$('#player_amount_selection').on('change', function() {
+			var playerAmount = parseInt($(this).val());
+			$('#tournament').empty();
+			$('.connector').remove();
+			cup = new Cup('#tournament', playerAmount);
+			cup.buildBracket();
+			cup.setIsInited(false);
+		});
+		
+		$('#complete_initialization').on('click', function() {
+			$('.settings').hide();
+			cup.setIsInited(true);
+		});
+		
+		$('#player_amount_selection').trigger('change');
+	});
+  
+  </script>
+  <title>Kuppy</title>
+</head>
+
+<body>
+
+	<div class="settings">
+		<div>Select amount of players
+		
+		<select id="player_amount_selection">
+			<option value="4">4</option>
+			<option value="8">8</option>
+			<option value="16">16</option>
+			<option value="32">32</option>
+			<option value="64">64</option>
+		</select>
+		</div>
+
+		<br>
+		<div id="player_name_guide" class="guide">Add player names by clicking boxes</div>
+
+	</div>
+	<div id="player_proceed_guide" class="guide hidden">Click player name to proceed him to the next round.</div>
+
+	<br>
+	<button class="settings" id="complete_initialization">Complete</button>
+	<br><br><br>
+  
+	<div id="tournament"></div>
+  
+  <div class="logo">Kuppy</div>
+</body>
+</html>

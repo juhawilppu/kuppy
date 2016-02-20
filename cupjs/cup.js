@@ -9,6 +9,8 @@
 
 function Cup(elementId, numberOfPlayers) {
 
+	var that=this;
+
 	this.$tournament = $(elementId);
 	this.$tournament.addClass('cupjs');
 	this.numberOfPlayers = numberOfPlayers;
@@ -26,10 +28,14 @@ function Cup(elementId, numberOfPlayers) {
 	this.UPPER = 'UPPER';
 	this.BOTTOM = 'BOTTOM';
 
+	this.isInited = false;
+	
 	/** Public methods **/
 
 	this.buildBracket = function () {
 
+		this.$tournament.append("<div id='connectors'></div>");
+	
 		var round = 0;
 		var playersLeft = 0;
 
@@ -51,13 +57,25 @@ function Cup(elementId, numberOfPlayers) {
 	this.addPlayer = function (round, pair, part, name) {
 		this._getElementByMatchId(round + '_' + pair + '_' + part)
 		.attr('name', name)
-		.find('.name').html(name);
+		.find('input').val(name);
 	};
 
 	this.setWinner = function (name) {
-		this._getElementByMatchId('winner').find('.name').html(name);
+		this._getElementByMatchId('winner').find('input').val(name);
 	};
 
+	
+	this.setIsInited = function(isInited) {
+		that.isInited=isInited;
+		
+		if (that.isInited===true) {
+			that.$tournament.removeClass('incomplete');
+			that.$tournament.find('input').attr('readonly', 'readonly');			
+		} else {
+			that.$tournament.addClass('incomplete');
+		}
+	}	
+	
 	/** Private methods **/
 
 	this._getElementByMatchId = function (matchId) {
@@ -71,9 +89,9 @@ function Cup(elementId, numberOfPlayers) {
 
 	this._getCoordinates = function ($element) {
 
-		var x = $element.offset().left + $element.width();
-		var y = $element.offset().top + $element.height() / 2.0;
-
+		var x = $element.offset().left - this.$tournament.offset().left + $element.width();
+		var y = $element.offset().top - this.$tournament.offset().top + $element.height() / 2.0;
+		
 		return {
 			x : x,
 			y : y
@@ -109,7 +127,7 @@ function Cup(elementId, numberOfPlayers) {
 		.css('top', coords1.y)
 		.css('left', (coords1.x - offset))
 
-		$connector.appendTo('body');
+		$connector.appendTo($('#connectors'));
 	};
 
 	this._drawPair = function (round, pair) {
@@ -169,27 +187,33 @@ function Cup(elementId, numberOfPlayers) {
 	
 	this._createPlayerBoxElement = function(round, pair, upperBottom) {
 		var generated_id = this._getId(round, pair, upperBottom);
-		return $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><div class="name"></div></div>');
+		return $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><input class="name"></div>');
 	}
 	
 	this._addClickListenerForProceedingToNextLevel = function($element) {
 		var that=this;
 		$element.on('click', function() {
 
-			var round = parseInt($(this).attr('round'));
-			var pair = parseInt($(this).attr('pair'));			
-			var name = $(this).attr('name');	
-			
-			var nextRound = round+1;
-			var nextPair = Math.ceil(pair/2);
-			var nextUpperBottom;
-			if (pair % 2 == 0) {
-				nextUpperBottom = that.BOTTOM;
+			if (that.isInited) {
+				var round = parseInt($(this).attr('round'));
+				var pair = parseInt($(this).attr('pair'));			
+				var name = $(this).attr('name');	
+				
+				var nextRound = round+1;
+				var nextPair = Math.ceil(pair/2);
+				var nextUpperBottom;
+				if (pair % 2 == 0) {
+					nextUpperBottom = that.BOTTOM;
+				} else {
+					nextUpperBottom = that.UPPER;
+				}
+				
+				that.addPlayer(nextRound, nextPair, nextUpperBottom, name);
 			} else {
-				nextUpperBottom = that.UPPER;
+				$element.find('input').on('blur', function() {
+					$(this).parent().attr('name', $(this).val());
+				});
 			}
-			
-			that.addPlayer(nextRound, nextPair, nextUpperBottom, name);
 		});
 	}
 	

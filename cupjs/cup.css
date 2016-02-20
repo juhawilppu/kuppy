@@ -28,14 +28,19 @@
 	cursor: pointer;
 }
 
-.cupjs .box .name {
-	text-align: center;
-	font-family: 'Fjalla One', sans-serif;
+.cupjs.incomplete div[round="1"] {
+	background: #9b59b6;
+	cursor: text;
 }
 
-.cupjs .box .score {
-	text-align: right;
-	margin-right: 1em;
+.cupjs input {
+	background: transparent;
+    border: none;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	font-family: 'Fjalla One', sans-serif;
+	font-size:15px;
 }
 
 .cupjs .stage {
