@@ -33,6 +33,10 @@
 	cursor: text;
 }
 
+.cupjs.incomplete div[round="1"] input {
+	color: white;
+}
+
 .cupjs input {
 	background: transparent;
     border: none;

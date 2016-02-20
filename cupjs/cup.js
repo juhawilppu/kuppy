@@ -56,7 +56,6 @@ function Cup(elementId, numberOfPlayers) {
 
 	this.addPlayer = function (round, pair, part, name) {
 		this._getElementByMatchId(round + '_' + pair + '_' + part)
-		.attr('name', name)
 		.find('input').val(name);
 	};
 
@@ -187,17 +186,22 @@ function Cup(elementId, numberOfPlayers) {
 	
 	this._createPlayerBoxElement = function(round, pair, upperBottom) {
 		var generated_id = this._getId(round, pair, upperBottom);
-		return $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><input class="name"></div>');
+		var $element= $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><input class="name"></div>');
+		
+		if (round > 1) {
+			$element.find('input').attr('readonly', 'readonly');
+		}
+		
+		return $element;
 	}
 	
 	this._addClickListenerForProceedingToNextLevel = function($element) {
 		var that=this;
 		$element.on('click', function() {
-
 			if (that.isInited) {
 				var round = parseInt($(this).attr('round'));
 				var pair = parseInt($(this).attr('pair'));			
-				var name = $(this).attr('name');	
+				var name = $(this).find('input').val();	
 				
 				var nextRound = round+1;
 				var nextPair = Math.ceil(pair/2);
@@ -209,10 +213,6 @@ function Cup(elementId, numberOfPlayers) {
 				}
 				
 				that.addPlayer(nextRound, nextPair, nextUpperBottom, name);
-			} else {
-				$element.find('input').on('blur', function() {
-					$(this).parent().attr('name', $(this).val());
-				});
 			}
 		});
 	}
