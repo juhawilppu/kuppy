@@ -16,17 +16,30 @@
   <script type="text/javascript">  
 
   	$(document).ready( function() {	
-		$('#player_amount_selection').on('change', function() {
-			var playerAmount = parseInt($(this).val());
+	
+		drawCup = function() {
+			var playerAmount = parseInt($("#player_amount_selection").val());
+			var drawStyle = parseInt($("#draw_style_selection").val());
+						
 			$('#tournament').empty();
 			$('.connector').remove();
 			cup = new Cup('#tournament', playerAmount);
+			cup.setStyle(drawStyle);
 			cup.buildBracket();
-			cup.setIsInited(false);
+			cup.setIsInited(false);		
+		}
+	
+		$('#player_amount_selection').on('change', function() {
+			drawCup();
 		});
 		
+		$('#draw_style_selection').on('change', function() {
+			drawCup();
+		});
+	
+		
 		$('#complete_initialization').on('click', function() {
-			$('.settings').hide();
+			$('.header').hide();
 			cup.setIsInited(true);
 		});
 		
@@ -38,13 +51,14 @@
 </head>
 
 <body>
-
-
-	<div class="toplogo">Kuppy</div>
-	<div class="slogan">Cup brackets for everyone.</div>
 	
 	<div class="header">
 
+		<div class="toplogo">Kuppy</div>
+		<div class="slogan">Cup brackets for everyone.</div>
+	
+		<br><br>
+	
 		<div class="settings">
 			<div>Select amount of players
 			
@@ -56,6 +70,14 @@
 				<option value="64">64</option>
 			</select>
 			</div>
+			
+			<div>Select drawing style
+			
+			<select id="draw_style_selection">
+				<option value="2">Group matches together</option>
+				<option value="1">Keep winner at previous match</option>
+			</select>
+			</div>			
 
 			<br>
 			<div id="player_name_guide" class="guide">Add player names by clicking boxes</div>
