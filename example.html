@@ -9,17 +9,18 @@
   <script src="cupjs/cup.js"></script>
   <link rel="stylesheet" type="text/css" href="cupjs/cup.css">
   <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-    
+
   <!-- Other imports -->
   <link rel="stylesheet" type="text/css" href="example.css">
-  
-  <script type="text/javascript">  
+
+  <script type="text/javascript">
 	$(document).ready( function() {
         cup = new Cup('#tournament', 8);
         cup.buildBracket();
+        cup.setIsInited(true);
 		fillFirstRound();
     });
-  
+
 	var fillFirstRound = function() {
 		cup.addPlayer(1, 1, 'UPPER', 'Jake');
 		cup.addPlayer(1, 1, 'BOTTOM', 'Patrick');
@@ -33,23 +34,23 @@
 		cup.addPlayer(1, 4, 'UPPER', 'Aaron');
 		cup.addPlayer(1, 4, 'BOTTOM', 'Theo');
 	}
-  
+
 	var fill = function() {
-		
+
 		fillFirstRound();
-		
-		cup.addPlayer(2, 1, 'UPPER', 'Jake');         
+
+		cup.addPlayer(2, 1, 'UPPER', 'Jake');
 		cup.addPlayer(2, 1, 'BOTTOM', 'Michael');
 
-		cup.addPlayer(2, 2, 'UPPER', 'Robin');                
-		cup.addPlayer(2, 2, 'BOTTOM', 'Theo');                
+		cup.addPlayer(2, 2, 'UPPER', 'Robin');
+		cup.addPlayer(2, 2, 'BOTTOM', 'Theo');
 
-		cup.addPlayer(3, 1, 'UPPER', 'Michael');              
+		cup.addPlayer(3, 1, 'UPPER', 'Michael');
 		cup.addPlayer(3, 1, 'BOTTOM', 'Theo');
 
-		cup.addPlayer(4, 1, 'UPPER', 'Theo');                       
+		cup.addPlayer(4, 1, 'UPPER', 'Theo');
 	}
-	
+
 	var clearN = function() {
 		cup.addPlayer(1, 1, 'UPPER', '');
 		cup.addPlayer(1, 1, 'BOTTOM', '');
@@ -63,18 +64,18 @@
 		cup.addPlayer(1, 4, 'UPPER', '');
 		cup.addPlayer(1, 4, 'BOTTOM', '');
 
-		cup.addPlayer(2, 1, 'UPPER', '');         
+		cup.addPlayer(2, 1, 'UPPER', '');
 		cup.addPlayer(2, 1, 'BOTTOM', '');
 
-		cup.addPlayer(2, 2, 'UPPER', '');                
-		cup.addPlayer(2, 2, 'BOTTOM', '');                
+		cup.addPlayer(2, 2, 'UPPER', '');
+		cup.addPlayer(2, 2, 'BOTTOM', '');
 
-		cup.addPlayer(3, 1, 'UPPER', '');              
+		cup.addPlayer(3, 1, 'UPPER', '');
 		cup.addPlayer(3, 1, 'BOTTOM', '');
 
 		cup.addPlayer(4, 1, 'UPPER', '');
 	}
-  
+
   </script>
 
   <title></title>
@@ -88,9 +89,9 @@
   <br><br>
   Click player name to proceed him to the next round.
   <br><br>
-  
+
   <div id="tournament"></div>
-  
+
   <div class="logo">CupJS</div>
 </body>
 </html>
