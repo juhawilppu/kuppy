@@ -15,11 +15,11 @@ function Cup(elementId, numberOfPlayers) {
 	this.$tournament.addClass('cupjs');
 	this.numberOfPlayers = numberOfPlayers;
 
-	/* Distance between two players that form a pair. */
-	this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 0.2;
+	/* Distance (px) between two players that form a pair. */
+	this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 0;
 
 	/* Distance between two pairs. */
-	this.DISTANCE_BETWEEN_PAIRS = 4;
+	this.DISTANCE_BETWEEN_PAIRS = 3;
 
 	/* Distance between rounds in terms of box width. */
 	this.DISTANCE_BETWEEN_ROUNDS = 0.5;
@@ -36,6 +36,11 @@ function Cup(elementId, numberOfPlayers) {
 	/** This is either 1 or 2. **/
 	this.setStyle = function(style) {
 		this.style = style;
+		if (style == 1) {
+			this.CONNECTOR_OFFSET = 0;
+		} else if (style == 2) {
+			this.CONNECTOR_OFFSET = 15.5;
+		}
 	}
 	
 	this.buildBracket = function () {
@@ -122,10 +127,10 @@ function Cup(elementId, numberOfPlayers) {
 		$connector = $('<div class="connector"></div>');
 
 		$connector
-		.css('height', (coords2.y - coords1.y) + 'px')
+		.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET*2) + 'px')
 		.css('width', (100 + offset) + 'px')
-		.css('top', coords1.y)
-		.css('left', (coords1.x - offset))
+		.css('top', coords1.y+ this.CONNECTOR_OFFSET)
+		.css('left', (coords1.x - offset-5))
 
 		$connector.appendTo($('#connectors'));
 	};
@@ -171,9 +176,9 @@ function Cup(elementId, numberOfPlayers) {
 		} else if (isWinnerOfCup === true) {
 			offset_y = 0;
 		} else if (upperBottom == this.UPPER) {
-				offset_y = (-1)*(elementHeight*0.6);
+				offset_y = (-1)*(elementHeight/2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR/2.0);
 		} else if (upperBottom == this.BOTTOM) {
-				offset_y = (elementHeight*0.6);
+				offset_y = elementHeight/2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR/2.0;
 		}
 
 		$element
@@ -277,9 +282,36 @@ function Cup(elementId, numberOfPlayers) {
 		var elementHeight = $firstPlayer.height();
 		var elementWidth = $firstPlayer.width();
 
-		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS);
-		var offset_second_y = offset_first_y + elementHeight * (1+this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR);
-
+		// TODO Maybe do this better...
+		var multiplyFactor = 0;
+		if (pair >= 3 ) {
+			multiplyFactor+=1;
+		}
+		if (pair >= 5 ) {
+			multiplyFactor+=2;
+		}
+		if (pair >= 7 ) {
+			multiplyFactor+=1;
+		}
+		if (pair >= 9 ) {
+			multiplyFactor+=4;
+		}
+		if (pair >= 11 ) {
+			multiplyFactor+=1;
+		}		
+		if (pair >= 13 ) {
+			multiplyFactor+=2;
+		}			
+		if (pair >= 15 ) {
+			multiplyFactor+=1;
+		}	
+		
+		this.EXTRA_DISTANCE = 55;
+		
+		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS) + multiplyFactor * this.EXTRA_DISTANCE;		
+		var offset_second_y = offset_first_y + elementHeight + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR;
+		
+		
 		$firstPlayer
 		.css('top', offset_first_y + 'px');
 
