@@ -60,23 +60,25 @@
 		<br><br>
 	
 		<div class="settings">
-			<div>Select amount of players
+			<div>
+				<div class="select_caption">Select amount of players</div>
 			
-			<select id="player_amount_selection">
-				<option value="4">4</option>
-				<option value="8">8</option>
-				<option value="16">16</option>
-				<option value="32">32</option>
-				<option value="64">64</option>
-			</select>
+				<select id="player_amount_selection" class="select_element">
+					<option value="4">4</option>
+					<option value="8">8</option>
+					<option value="16">16</option>
+					<option value="32">32</option>
+					<option value="64">64</option>
+				</select>
 			</div>
 			
-			<div>Select drawing style
+			<div>				
+				<div class="select_caption">Select drawing style</div>
 			
-			<select id="draw_style_selection">
-				<option value="2">Group matches together</option>
-				<option value="1">Keep winner at previous match</option>
-			</select>
+				<select id="draw_style_selection" class="select_element">
+					<option value="2">Group matches together</option>
+					<option value="1">Keep winner at previous match</option>
+				</select>
 			</div>			
 
 			<br>
@@ -86,9 +88,9 @@
 		<div id="player_proceed_guide" class="guide hidden">Click player name to proceed him to the next round.</div>
 
 		<br>
-		<button class="settings" id="complete_initialization">Complete</button>
-		<br><br><br>
-
+		<div class="button_container">
+			<button class="settings" id="complete_initialization">Complete</button>
+		</div>
 	</div>
 	
 	<div id="tournament"></div>
