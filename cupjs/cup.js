@@ -29,19 +29,9 @@ function Cup(elementId, numberOfPlayers) {
 	this.BOTTOM = 'BOTTOM';
 
 	this.isInited = false;
-	this.style = 1;
-
+	this.CONNECTOR_OFFSET = 15;
+	
 	/** Public methods **/
-
-	/** This is either 1 or 2. **/
-	this.setStyle = function(style) {
-		this.style = style;
-		if (style == 1) {
-			this.CONNECTOR_OFFSET = 0;
-		} else if (style == 2) {
-			this.CONNECTOR_OFFSET = 15;
-		}
-	}
 	
 	this.buildBracket = function () {
 
@@ -161,12 +151,10 @@ function Cup(elementId, numberOfPlayers) {
 		var parents = this._getParentsId(round, 1, this.UPPER, true);
 		this._drawWinner(round, 1, this.UPPER, parents, true);
 
-		if (this.style == 2) {		
-			this._addConnector(
-				this._getId(parents.a.round, parents.a.pair, this.UPPER),
-				this._getId(parents.b.round, parents.b.pair, this.BOTTOM)
-			);
-		}
+		this._addConnector(
+			this._getId(parents.a.round, parents.a.pair, this.UPPER),
+			this._getId(parents.b.round, parents.b.pair, this.BOTTOM)
+		);
 	};
 
 	this._drawWinner = function (round, pair, upperBottom, parents, isWinnerOfCup) {
@@ -182,9 +170,7 @@ function Cup(elementId, numberOfPlayers) {
 		second_coords = this._getCoordinatesCss($("div[id='" + parents.b.id + "']"));
 
 		var offset_y;
-		if	(this.style == 1) {
-			offset_y = 0;
-		} else if (isWinnerOfCup === true) {
+		if (isWinnerOfCup === true) {
 			offset_y = 0;
 		} else if (upperBottom == this.UPPER) {
 				offset_y = (-1)*(elementHeight/2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR/2.0);
@@ -206,20 +192,7 @@ function Cup(elementId, numberOfPlayers) {
 		var first_parent;
 		var second_parent;
 
-		if (this.style == 1) {
-		
-			if (upperBottom == this.UPPER) {
-				parentPair--;
-			}
-		
-			var first_parent = parentRound + '_' + parentPair + '_' + this.UPPER;
-			var second_parent = parentRound + '_' + parentPair + '_' + this.BOTTOM;
-
-			return {
-				a : {id: first_parent},
-				b : {id: second_parent}
-			};
-		} else if (isWinnerOfCup === true) {
+		if (isWinnerOfCup === true) {
 			// Winner of cup is the only box, which is based on parents
 			// from the same pair
 			first_parent = parentRound + '_' + 1 + '_' + this.UPPER;
@@ -250,9 +223,12 @@ function Cup(elementId, numberOfPlayers) {
 		var generated_id = this._getId(round, pair, upperBottom);
 		var $element= $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><input class="name"></div>');
 
-		if (round > 1) {
+		if (round == 1) {
+			//$element.find('input').attr('placeholder', 'Write name');
+		} else {
 			$element.find('input').attr('readonly', 'readonly');
 		}
+		
 
 		return $element;
 	}
@@ -328,13 +304,6 @@ function Cup(elementId, numberOfPlayers) {
 
 		$secondPlayer
 		.css('top', offset_second_y + 'px');
-
-		if (this.style == 1) {
-			this._addConnector(
-				this._getId(round, pair, this.UPPER),
-				this._getId(round, pair, this.BOTTOM)
-			);		
-		}
 	};
 
 	this._drawPairForRound = function (round, pair) {
@@ -345,17 +314,11 @@ function Cup(elementId, numberOfPlayers) {
 		this._drawWinner(round, pair, this.UPPER, a_parents);
 		this._drawWinner(round, pair, this.BOTTOM, b_parents);
 
-		if ( this.style == 1) {	
-			this._addConnector(
-				this._getId(round, pair, this.UPPER),
-				this._getId(round, pair, this.BOTTOM)
-			);
-		} else if (this.style == 2) {
-			this._addConnector(
-				this._getId(a_parents.a.round, a_parents.a.pair, this.UPPER),
-				this._getId(b_parents.b.round, b_parents.b.pair, this.BOTTOM)
-			);
-		}
+		this._addConnector(
+			this._getId(a_parents.a.round, a_parents.a.pair, this.UPPER),
+			this._getId(b_parents.b.round, b_parents.b.pair, this.BOTTOM)
+		);
+
 
 	};
 

@@ -19,24 +19,17 @@
 	
 		drawCup = function() {
 			var playerAmount = parseInt($("#player_amount_selection").val());
-			var drawStyle = parseInt($("#draw_style_selection").val());
 						
 			$('#tournament').empty();
 			$('.connector').remove();
 			cup = new Cup('#tournament', playerAmount);
-			cup.setStyle(drawStyle);
 			cup.buildBracket();
 			cup.setIsInited(false);		
 		}
 	
 		$('#player_amount_selection').on('change', function() {
 			drawCup();
-		});
-		
-		$('#draw_style_selection').on('change', function() {
-			drawCup();
-		});
-	
+		});	
 		
 		$('#complete_initialization').on('click', function() {
 			$('.header').hide();
@@ -69,16 +62,7 @@
 					<option value="16" selected>16</option>
 					<option value="32">32</option>
 				</select>
-			</div>
-			
-			<div>				
-				<div class="select_caption">Select drawing style</div>
-			
-				<select id="draw_style_selection" class="select_element">
-					<option value="2">Group matches together</option>
-					<option value="1">Keep winner at previous match</option>
-				</select>
-			</div>			
+			</div>						
 
 			<br>
 			<div id="player_name_guide" class="guide">Add player names by clicking boxes</div>
