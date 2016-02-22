@@ -39,7 +39,7 @@ function Cup(elementId, numberOfPlayers) {
 		if (style == 1) {
 			this.CONNECTOR_OFFSET = 0;
 		} else if (style == 2) {
-			this.CONNECTOR_OFFSET = 15.5;
+			this.CONNECTOR_OFFSET = 15;
 		}
 	}
 	
@@ -124,13 +124,24 @@ function Cup(elementId, numberOfPlayers) {
 
 		var coords1 = this._getCoordinatesByMatchId(matchId1),
 		coords2 = this._getCoordinatesByMatchId(matchId2),
-		$connector = $('<div class="connector"></div>');
-
-		$connector
-		.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET*2) + 'px')
-		.css('width', (100 + offset) + 'px')
-		.css('top', coords1.y+ this.CONNECTOR_OFFSET)
-		.css('left', (coords1.x - offset-5))
+		$connector = $('<div></div>');
+		$connector.addClass('connector');
+			
+		if (coords2.y - coords1.y < 50) {
+			$connector
+			.css('height', 1 + 'px')
+			.css('width', (100 + offset) + 'px')
+			.css('top', coords1.y+ this.CONNECTOR_OFFSET)
+			.css('left', (coords1.x - offset-5));
+			
+			$connector.addClass('single-line-connector');
+		} else {
+			$connector
+			.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET*2 - 1) + 'px')
+			.css('width', (100 + offset) + 'px')
+			.css('top', coords1.y+ this.CONNECTOR_OFFSET)
+			.css('left', (coords1.x - offset-5))
+		}
 
 		$connector.appendTo($('#connectors'));
 	};
