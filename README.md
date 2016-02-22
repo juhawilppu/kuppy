@@ -9,7 +9,6 @@ JavaScript library for building a cup bracket.
 - Two ways to draw the bracket
 
 See it in action: https://rawgithub.com/juharajajarvi/cupjs/master/example.html
-
 or try yourself: https://rawgithub.com/juharajajarvi/cupjs/master/interactive_example.html
 
 Usage:
@@ -46,6 +45,6 @@ Usage:
 		testCup.addPlayer(3, 1, 'BOTTOM', 'Theo');
 
 		// Winner
-        testCup.setWinner('Theo');
+        testCup.addPlayer(4, 1, 'UPPER', 'Theo');
 
 ```
