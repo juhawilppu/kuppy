@@ -239,6 +239,9 @@ function Cup(elementId, numberOfPlayers) {
 			if (that.isInited) {
 				var round = parseInt($(this).attr('round'));
 				var pair = parseInt($(this).attr('pair'));
+				var upperBottom = $(this).attr('upperBottom');
+				var otherUpperBottom = upperBottom == that.UPPER ? that.BOTTOM : that.UPPER;
+				
 				var name = $(this).find('input').val();
 
 				var nextRound = round+1;
@@ -251,6 +254,9 @@ function Cup(elementId, numberOfPlayers) {
 				}
 
 				that.addPlayer(nextRound, nextPair, nextUpperBottom, name);
+				$('#' + that._getId(round, pair, otherUpperBottom)).addClass('knocked-out');
+				$element.removeClass('knocked-out');
+				
 			}
 		});
 	}
