@@ -32,6 +32,11 @@
 	color: #95a5a6;
 }
 
+.cupjs .box:hover {
+	background: #7FDBFF;
+}
+
+
 .cupjs.incomplete div[round="1"] {
 	background: #e74c3c;
 	cursor: text;
