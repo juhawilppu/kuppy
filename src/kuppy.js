@@ -1,18 +1,18 @@
 /*
- * CupJS -- library for building a cup bracket for a tournament.
+ * Kuppy -- library for building a cup bracket for a tournament.
  *
- * Copyright 2016 Juha Rajajärvi
+ * Copyright 2013-2025 Juha Wilppu
  * Released under the MIT license
  * https://jquery.org/license
  *
  */
 
-function Cup(elementId, numberOfPlayers) {
+function Kuppy(elementId, numberOfPlayers) {
 
 	var that=this;
 
 	this.$tournament = $(elementId);
-	this.$tournament.addClass('cupjs');
+	this.$tournament.addClass('kuppy');
 	this.numberOfPlayers = numberOfPlayers;
 
 	/* Distance (px) between two players that form a pair. */

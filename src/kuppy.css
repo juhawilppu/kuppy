@@ -1,8 +1,8 @@
-.cupjs {
+.kuppy {
 	position: relative;
 }
 
-.cupjs .box {
+.kuppy .box {
 
 	text-align: center;
 	vertical-align: middle;
@@ -28,25 +28,25 @@
 	cursor: pointer;
 }
 
-.cupjs .box.knocked-out input {
+.kuppy .box.knocked-out input {
 	color: #95a5a6;
 }
 
-.cupjs .box:hover {
+.kuppy .box:hover {
 	background: #7FDBFF;
 }
 
 
-.cupjs.incomplete div[round="1"] {
+.kuppy.incomplete div[round="1"] {
 	background: #e74c3c;
 	cursor: text;
 }
 
-.cupjs.incomplete div[round="1"] input {
+.kuppy.incomplete div[round="1"] input {
 	color: white;
 }
 
-.cupjs input {
+.kuppy input {
 	background: transparent;
     border: none;
 	height: 90%;
@@ -56,12 +56,12 @@
 	font-size:15px;
 }
 
-.cupjs .stage {
+.kuppy .stage {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
 
-.cupjs .connector {
+.kuppy .connector {
 	border-top-right-radius:5px;
 	border-bottom-right-radius:5px;
 	border-top: 2px solid #78909c;
@@ -71,7 +71,7 @@
 	z-index: -1;
 }
 
-.cupjs .single-line-connector {
+.kuppy .single-line-connector {
 	border-top: 2px solid #78909c;
 	border-right: 0;
 	border-bottom: 0;
