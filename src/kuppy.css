@@ -7,13 +7,10 @@
 	text-align: center;
 	vertical-align: middle;
 
-	border:0px solid black;
-	border-radius:0px;
+	border: 2px solid #bbb;
+	border-radius: 0;
 
-	background: rgb(255,255,255);
-	background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(232,232,232,1) 100%);
-	background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(232,232,232,1) 100%);
-	background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(232,232,232,1) 100%);
+	background: #ffffff;
 	
 	width: 100px;
 	height: 30px;
@@ -33,7 +30,7 @@
 }
 
 .kuppy .box:hover {
-	background: #7FDBFF;
+	background: #e0f7fa;
 }
 
 
@@ -52,8 +49,9 @@
 	height: 90%;
 	width: 90%;
 	text-align: center;
-	font-family: 'Fjalla One', sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 	font-size:15px;
+	color: #222;
 }
 
 .kuppy .stage {
@@ -62,17 +60,17 @@
 }
 
 .kuppy .connector {
-	border-top-right-radius:5px;
-	border-bottom-right-radius:5px;
-	border-top: 2px solid #78909c;
-	border-right: 2px solid #78909c;
-	border-bottom: 2px solid #78909c;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top: 2px solid #ddd;
+	border-right: 2px solid #ddd;
+	border-bottom: 2px solid #ddd;
 	position: absolute;
 	z-index: -1;
 }
 
 .kuppy .single-line-connector {
-	border-top: 2px solid #78909c;
+	border-top: 2px solid #ddd;
 	border-right: 0;
 	border-bottom: 0;
 }
