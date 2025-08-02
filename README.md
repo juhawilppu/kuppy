@@ -1,49 +1,34 @@
-CupJS
-=====
+# Kuppy
 
-JavaScript library for building a cup bracket.
+**Kuppy** is a minimal JavaScript library for building interactive cup brackets (e.g. 8-player single elimination). It works with plain HTML and lets you programmatically or interactively move players through the rounds.
 
-**Features**
-- Supports any number of participants (4, 8, 16, 32, etc).
-- Proceed players to following rounds by clicking the name of the player. Also possible by calling the JavaScript object.
+Originally built in 2013. Cleaned up in 2025.
 
-See it in action: https://rawgithub.com/juharajajarvi/cupjs/master/example.html
-or try yourself: https://rawgithub.com/juharajajarvi/cupjs/master/interactive_example.html
+### Why I built it
 
-Usage:
-```javascript
-        var testCup = new Cup('#tournament', 8);
-        testCup.buildBracket();
+Back in 2013, I was building a multiplayer online learning game as part of my university studies. The game featured a knockout tournament where students competed in a math challenge. Each match consisted of two players going head-to-head. Both were shown five questions — things like `1 × 5`, `6 × 3`, or `2 × 6` — and the player who answered more correctly (or faster) won the match.
 
-		// 1st round, 1st pair
-        testCup.addPlayer(1, 1, 'UPPER', 'Jake');
-        testCup.addPlayer(1, 1, 'BOTTOM', 'Patrick');
+The winner advanced to the next round. The loser was eliminated but could join a new tournament. It was like *Battlefield*, but with mathematics!
 
-		// 1st round, 2nd pair
-		testCup.addPlayer(1, 2, 'UPPER', 'Michael');
-        testCup.addPlayer(1, 2, 'BOTTOM', 'Nigel');
+I needed a way to render the tournament bracket, but there were no good open-source libraries at the time. So I built my own. That library eventually became Kuppy.
 
-		// 1st round, 3rd pair
-		testCup.addPlayer(1, 3, 'UPPER', 'Robin');
-        testCup.addPlayer(1, 3, 'BOTTOM', 'Peter');
+### ✨ Features
 
-		// 1st round, 4th pair
-		testCup.addPlayer(1, 4, 'UPPER', 'Aaron');
-        testCup.addPlayer(1, 4, 'BOTTOM', 'Theo');
+- Supports any power-of-two number of players (4, 8, 16, 32, …)
+- Add players programmatically
+- Advance winners by clicking on their names
+- Pure JavaScript — no dependencies
 
-		// 2nd round, 1st pair
-        testCup.addPlayer(2, 1, 'UPPER', 'Jake');		
-		testCup.addPlayer(2, 1, 'BOTTOM', 'Michael');
+### 📺 Demo
 
-		// 2nd round, 2nd pair
-        testCup.addPlayer(2, 2, 'UPPER', 'Robin');		
-		testCup.addPlayer(2, 2, 'BOTTOM', 'Theo');		
+- [Live demo](https://juhawilppu.com/kuppy/)
 
-		// 3rd round, 1st pair
-        testCup.addPlayer(3, 1, 'UPPER', 'Michael');		
-		testCup.addPlayer(3, 1, 'BOTTOM', 'Theo');
+### 🚀 Usage
 
-		// Winner
-        testCup.addPlayer(4, 1, 'UPPER', 'Theo');
+```js
+const kuppy = new Kuppy('#tournament', 8);
+kuppy.buildBracket();
 
-```
+kuppy.addPlayer(1, 1, 'UPPER', 'Jake');
+kuppy.addPlayer(1, 1, 'BOTTOM', 'Patrick');
+// ...
