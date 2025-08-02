@@ -2,13 +2,13 @@
 
 <html>
 <head>
-  <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <!-- Imports needed by Kuppy -->
   <script src="../src/kuppy.js"></script>
   <link rel="stylesheet" type="text/css" href="../src/kuppy.css">
   <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  <title>Kuppy Demo</title>
 
   <!-- Other imports -->
   <link rel="stylesheet" type="text/css" href="demo.css">
@@ -18,11 +18,11 @@
         cup = new Kuppy('#tournament', 8);
         cup.buildBracket();
         cup.setIsInited(true);
-		
-		fillFirstRound();
+
+		renderShowcaseMode();
     });
 
-	var fillFirstRound = function() {
+	var renderShowcaseMode = function() {
 		cup.addPlayer(1, 1, 'UPPER', 'Jake');
 		cup.addPlayer(1, 1, 'BOTTOM', 'Patrick');
 
@@ -34,11 +34,6 @@
 
 		cup.addPlayer(1, 4, 'UPPER', 'Aaron');
 		cup.addPlayer(1, 4, 'BOTTOM', 'Theo');
-	}
-
-	var fill = function() {
-
-		fillFirstRound();
 
 		cup.addPlayer(2, 1, 'UPPER', 'Jake');
 		cup.addPlayer(2, 1, 'BOTTOM', 'Michael');
@@ -52,7 +47,7 @@
 		cup.addPlayer(4, 1, 'UPPER', 'Theo');
 	}
 
-	var clearN = function() {
+	var clearData = function() {
 		cup.addPlayer(1, 1, 'UPPER', '');
 		cup.addPlayer(1, 1, 'BOTTOM', '');
 
@@ -78,15 +73,10 @@
 	}
 
   </script>
-
-  <title></title>
 </head>
 
 <body>
-  <button type="button" onclick="clearN();">Render</button>
-
   <div id="tournament"></div>
-
   <div class="logo">Kuppy</div>
 </body>
 </html>
