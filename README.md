@@ -4,6 +4,8 @@
 
 Originally built in 2013. Cleaned up in 2025.
 
+![Kuppy bracket example](media/kuppy-screenshot.png)
+
 ### Why I built it
 
 Back in 2013, I was building a multiplayer online learning game as part of my university studies. The game featured a knockout tournament where students competed in a math challenge. Each match consisted of two players going head-to-head. Both were shown five questions — things like `1 × 5`, `6 × 3`, or `2 × 6` — and the player who answered more correctly (or faster) won the match.
