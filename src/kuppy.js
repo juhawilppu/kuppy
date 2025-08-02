@@ -329,3 +329,5 @@ function Kuppy(elementId, numberOfPlayers) {
 	};
 
 }
+
+export default Kuppy;
