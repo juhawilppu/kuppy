@@ -23,7 +23,7 @@ I needed a way to render the tournament bracket, but there were no good open-sou
 
 ### 📺 Demo
 
-- [Live demo](https://juhawilppu.com/kuppy/)
+- [Live demo](https://juhawilppu.github.io/kuppy/demo/)
 
 ### 🚀 Usage
 
@@ -34,8 +34,10 @@ kuppy.buildBracket();
 kuppy.addPlayer(1, 1, 'UPPER', 'Jake');
 kuppy.addPlayer(1, 1, 'BOTTOM', 'Patrick');
 // ...
+```
 
 ### 📦 Install via npm
 
 ```bash
 npm install @juhawilppu/kuppy
+```

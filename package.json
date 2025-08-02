@@ -1,6 +1,6 @@
 {
   "name": "@juhawilppu/kuppy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimal JS library for rendering cup brackets",
   "main": "src/kuppy.js",
   "scripts": {
