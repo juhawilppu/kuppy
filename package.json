@@ -1,0 +1,19 @@
+{
+  "name": "@juhawilppu/kuppy",
+  "version": "1.0.0",
+  "description": "Minimal JS library for rendering cup brackets",
+  "main": "src/kuppy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juhawilppu/kuppy.git"
+  },
+  "author": "Juha Wilppu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juhawilppu/kuppy/issues"
+  },
+  "homepage": "https://github.com/juhawilppu/kuppy#readme"
+}
