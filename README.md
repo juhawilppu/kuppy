@@ -21,10 +21,6 @@ I needed a way to render the tournament bracket, but there were no good open-sou
 - Advance winners by clicking on their names
 - Requires jQuery
 
-### 📺 Demo
-
-- [Live demo](https://juhawilppu.github.io/kuppy/demo/)
-
 ### 🚀 Usage
 
 Install via npm
@@ -49,7 +45,7 @@ bracket.addPlayer(1, 1, 'BOTTOM', 'Patrick');
 // ...
 ```
 
-### How to develop locally
+### 👨🏻‍💻 How to develop locally
 
 To work on kuppy locally:
 
