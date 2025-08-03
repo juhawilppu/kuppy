@@ -7,7 +7,7 @@ window.jQuery = $;
 
 const demoCase = 16;
 
-const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: demoCase, boxWidth: demoCase === 16 ? 120 : undefined });
+const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: demoCase, boxWidth: demoCase === 16 ? 140 : undefined });
 
 const commands = [];
 
