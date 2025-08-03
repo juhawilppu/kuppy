@@ -25,6 +25,12 @@
 	cursor: pointer;
 }
 
+.kuppy .box.winner {
+	background: linear-gradient(to right, #fff4aa, #ffe600);
+	border: 2px solid #d4af37;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
 .kuppy .box.knocked-out input {
 	color: #95a5a6;
 }

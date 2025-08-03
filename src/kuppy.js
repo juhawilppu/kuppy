@@ -183,6 +183,7 @@ export default class Kuppy {
 		}
 
 		$element
+			.addClass(isWinnerOfCup ? 'winner' : '')
 			.css('left', (first_coords.x + second_coords.x) * this.DISTANCE_BETWEEN_ROUNDS + roundOffset + 'px')
 			.css('top', (first_coords.y + second_coords.y) * this.DISTANCE_BETWEEN_ROUNDS + offset_y + 'px');
 
