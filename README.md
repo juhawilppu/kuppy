@@ -4,7 +4,7 @@
 
 Originally built in 2013. Cleaned up in 2025.
 
-![Kuppy bracket example](media/kuppy-screenshot.png)
+![Kuppy demo](media/8-players-video.gif)
 
 ### 🛠️ Why I built it
 
