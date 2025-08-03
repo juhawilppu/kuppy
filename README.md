@@ -4,7 +4,9 @@
 
 Originally built in 2013. Cleaned up in 2025.
 
-![Kuppy demo](media/8-players-video.gif)
+👇 Here’s Kuppy rendering the 2022 FIFA World Cup knock-out stage:
+
+<img src="media/kuppy-world-cup-2022.gif" alt="Kuppy demo" style="border: none; background: none; box-shadow: none;" />
 
 ### 🛠️ Why I built it
 
