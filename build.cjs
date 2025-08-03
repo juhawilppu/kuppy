@@ -11,7 +11,7 @@ esbuild.buildSync({
   entryPoints: ['src/kuppy.js'],
   bundle: true,
   outfile: 'dist/kuppy.js',
-  format: 'iife',
+  format: 'esm',
   minify: true,
 });
 
