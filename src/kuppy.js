@@ -23,6 +23,8 @@ export default class Kuppy {
 		/* Distance between rounds in terms of box width. */
 		this.DISTANCE_BETWEEN_ROUNDS = 0.5;
 
+		this.BOX_WIDTH = options.boxWidth || 100;
+
 		/* Words for pair */
 		this.UPPER = 'UPPER';
 		this.BOTTOM = 'BOTTOM';
@@ -32,18 +34,18 @@ export default class Kuppy {
 
 		this._buildBracket();
 	}
-	
+
 	/** Public methods **/
 
 	addPlayer(round, pair, part, name) {
 		this._getElementByMatchId(round + '_' + pair + '_' + part)
-		.find('input').val(name);
+			.find('input').val(name);
 	}
 
 	setIsInited(isInited) {
-		this.isInited=isInited;
+		this.isInited = isInited;
 
-		if (this.isInited===true) {
+		if (this.isInited === true) {
 			this.$tournament.removeClass('incomplete');
 			this.$tournament.find('input').attr('readonly', 'readonly');
 		} else {
@@ -90,8 +92,8 @@ export default class Kuppy {
 		var y = $element.offset().top - this.$tournament.offset().top + $element.height() / 2.0;
 
 		return {
-			x : x,
-			y : y
+			x: x,
+			y: y
 		};
 	}
 
@@ -100,9 +102,9 @@ export default class Kuppy {
 		var x = $element.offset().left + $element.width();
 		var y = parseInt($element.css('top'))
 
-			return {
-			x : x,
-			y : y
+		return {
+			x: x,
+			y: y
 		}
 	}
 
@@ -115,24 +117,24 @@ export default class Kuppy {
 		}
 
 		var coords1 = this._getCoordinatesByMatchId(matchId1),
-		coords2 = this._getCoordinatesByMatchId(matchId2),
-		$connector = $('<div></div>');
+			coords2 = this._getCoordinatesByMatchId(matchId2),
+			$connector = $('<div></div>');
 		$connector.addClass('connector');
-			
+
 		if (coords2.y - coords1.y < 50) {
 			$connector
-			.css('height', 1 + 'px')
-			.css('width', (100 + offset) + 'px')
-			.css('top', coords1.y+ this.CONNECTOR_OFFSET)
-			.css('left', (coords1.x - offset-5));
-			
+				.css('height', 1 + 'px')
+				.css('width', (100 + offset) + 'px')
+				.css('top', coords1.y + this.CONNECTOR_OFFSET)
+				.css('left', (coords1.x - offset - 5));
+
 			$connector.addClass('single-line-connector');
 		} else {
 			$connector
-			.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET*2 - 1) + 'px')
-			.css('width', (100 + offset) + 'px')
-			.css('top', coords1.y+ this.CONNECTOR_OFFSET)
-			.css('left', (coords1.x - offset-5))
+				.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET * 2 - 1) + 'px')
+				.css('width', (100 + offset) + 'px')
+				.css('top', coords1.y + this.CONNECTOR_OFFSET)
+				.css('left', (coords1.x - offset - 5))
 		}
 
 		$connector.appendTo($('#connectors'));
@@ -169,20 +171,20 @@ export default class Kuppy {
 		var elementHeight = $element.height();
 
 		var first_coords = this._getCoordinatesCss($("div[id='" + parents.a.id + "']")),
-		second_coords = this._getCoordinatesCss($("div[id='" + parents.b.id + "']"));
+			second_coords = this._getCoordinatesCss($("div[id='" + parents.b.id + "']"));
 
 		var offset_y;
 		if (isWinnerOfCup === true) {
 			offset_y = 0;
 		} else if (upperBottom == this.UPPER) {
-				offset_y = (-1)*(elementHeight/2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR/2.0);
+			offset_y = (-1) * (elementHeight / 2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR / 2.0);
 		} else if (upperBottom == this.BOTTOM) {
-				offset_y = elementHeight/2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR/2.0;
+			offset_y = elementHeight / 2.0 + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR / 2.0;
 		}
 
 		$element
-		.css('left', (first_coords.x + second_coords.x) * this.DISTANCE_BETWEEN_ROUNDS + roundOffset + 'px')
-		.css('top', (first_coords.y + second_coords.y) * this.DISTANCE_BETWEEN_ROUNDS + offset_y + 'px');
+			.css('left', (first_coords.x + second_coords.x) * this.DISTANCE_BETWEEN_ROUNDS + roundOffset + 'px')
+			.css('top', (first_coords.y + second_coords.y) * this.DISTANCE_BETWEEN_ROUNDS + offset_y + 'px');
 
 	}
 
@@ -201,17 +203,17 @@ export default class Kuppy {
 			second_parent = parentRound + '_' + 1 + '_' + this.BOTTOM;
 
 			return {
-				a : {id: first_parent, round: parentRound, pair: 1},
-				b : {id: second_parent, round: parentRound, pair: 1}
+				a: { id: first_parent, round: parentRound, pair: 1 },
+				b: { id: second_parent, round: parentRound, pair: 1 }
 			};
 
 		} else {
-			first_parent = parentRound + '_' + (parentPair-1) + '_' + this.BOTTOM;
+			first_parent = parentRound + '_' + (parentPair - 1) + '_' + this.BOTTOM;
 			second_parent = parentRound + '_' + parentPair + '_' + this.UPPER;
 
 			return {
-				a : {id: first_parent, round: parentRound, pair: parentPair-1},
-				b : {id: second_parent, round: parentRound, pair: parentPair}
+				a: { id: first_parent, round: parentRound, pair: parentPair - 1 },
+				b: { id: second_parent, round: parentRound, pair: parentPair }
 			};
 		}
 
@@ -223,31 +225,31 @@ export default class Kuppy {
 
 	_createPlayerBoxElement(round, pair, upperBottom) {
 		var generated_id = this._getId(round, pair, upperBottom);
-		var $element= $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><input class="name"></div>');
+		var $element = $('<div id="' + generated_id + '" round="' + round + '" pair="' + pair + '" upperBottom="' + upperBottom + '" class="box" style="width: ' + this.BOX_WIDTH + 'px;"><input class="name"></div>');
 
 		if (round == 1) {
 			//$element.find('input').attr('placeholder', 'Write name');
 		} else {
 			$element.find('input').attr('readonly', 'readonly');
 		}
-		
+
 
 		return $element;
 	}
 
 	_addClickListenerForProceedingToNextLevel($element) {
-		var that=this;
-		$element.on('click', function() {
+		var that = this;
+		$element.on('click', function () {
 			if (this.isInited) {
 				var round = parseInt($(this).attr('round'));
 				var pair = parseInt($(this).attr('pair'));
 				var upperBottom = $(this).attr('upperBottom');
 				var otherUpperBottom = upperBottom == this.UPPER ? this.BOTTOM : this.UPPER;
-				
+
 				var name = $(this).find('input').val();
 
-				var nextRound = round+1;
-				var nextPair = Math.ceil(pair/2);
+				var nextRound = round + 1;
+				var nextPair = Math.ceil(pair / 2);
 				var nextUpperBottom;
 				if (pair % 2 == 0) {
 					nextUpperBottom = this.BOTTOM;
@@ -258,7 +260,7 @@ export default class Kuppy {
 				this.addPlayer(nextRound, nextPair, nextUpperBottom, name);
 				$('#' + this._getId(round, pair, otherUpperBottom)).addClass('knocked-out');
 				$element.removeClass('knocked-out');
-				
+
 			}
 		});
 	}
@@ -279,39 +281,39 @@ export default class Kuppy {
 
 		// TODO This needs work
 		var multiplyFactor = 0;
-		if (pair >= 3 ) {
-			multiplyFactor+=1;
+		if (pair >= 3) {
+			multiplyFactor += 1;
 		}
-		if (pair >= 5 ) {
-			multiplyFactor+=2;
+		if (pair >= 5) {
+			multiplyFactor += 2;
 		}
-		if (pair >= 7 ) {
-			multiplyFactor+=1;
+		if (pair >= 7) {
+			multiplyFactor += 1;
 		}
-		if (pair >= 9 ) {
-			multiplyFactor+=4;
+		if (pair >= 9) {
+			multiplyFactor += 4;
 		}
-		if (pair >= 11 ) {
-			multiplyFactor+=1;
-		}		
-		if (pair >= 13 ) {
-			multiplyFactor+=2;
-		}			
-		if (pair >= 15 ) {
-			multiplyFactor+=1;
-		}	
-		
+		if (pair >= 11) {
+			multiplyFactor += 1;
+		}
+		if (pair >= 13) {
+			multiplyFactor += 2;
+		}
+		if (pair >= 15) {
+			multiplyFactor += 1;
+		}
+
 		this.EXTRA_DISTANCE = 55;
-		
-		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS) + multiplyFactor * this.EXTRA_DISTANCE;		
+
+		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS) + multiplyFactor * this.EXTRA_DISTANCE;
 		var offset_second_y = offset_first_y + elementHeight + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR;
-		
-		
+
+
 		$firstPlayer
-		.css('top', offset_first_y + 'px');
+			.css('top', offset_first_y + 'px');
 
 		$secondPlayer
-		.css('top', offset_second_y + 'px');
+			.css('top', offset_second_y + 'px');
 	}
 
 	_drawPairForRound(round, pair) {

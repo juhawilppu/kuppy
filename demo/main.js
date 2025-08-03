@@ -5,9 +5,9 @@ import $ from 'jquery';
 window.$ = $; // if Kuppy expects global $
 window.jQuery = $;
 
-const demoCase = 8;
+const demoCase = 16;
 
-const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: demoCase });
+const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: demoCase, boxWidth: demoCase === 16 ? 120 : undefined });
 
 const commands = [];
 
