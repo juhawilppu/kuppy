@@ -101,13 +101,12 @@ export default class Kuppy {
 	}
 
 	_getCoordinatesCss($element) {
-
-		var x = $element.offset().left + $element.width();
-		var y = parseInt($element.css('top'))
+		const position = $element.position();
+		const width = $element.outerWidth();
 
 		return {
-			x: x,
-			y: y
+			x: position.left + width,
+			y: position.top
 		}
 	}
 
