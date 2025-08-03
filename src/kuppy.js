@@ -7,33 +7,53 @@
  *
  */
 
-function Kuppy(elementId, numberOfPlayers) {
+export default class Kuppy {
 
-	var that=this;
+	constructor(options = {}) {
+		this.$tournament = $(options.elementId);
+		this.$tournament.addClass('kuppy');
+		this.numberOfPlayers = options.numberOfPlayers;
 
-	this.$tournament = $(elementId);
-	this.$tournament.addClass('kuppy');
-	this.numberOfPlayers = numberOfPlayers;
+		/* Distance (px) between two players that form a pair. */
+		this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 0;
 
-	/* Distance (px) between two players that form a pair. */
-	this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 0;
+		/* Distance between two pairs. */
+		this.DISTANCE_BETWEEN_PAIRS = 3;
 
-	/* Distance between two pairs. */
-	this.DISTANCE_BETWEEN_PAIRS = 3;
+		/* Distance between rounds in terms of box width. */
+		this.DISTANCE_BETWEEN_ROUNDS = 0.5;
 
-	/* Distance between rounds in terms of box width. */
-	this.DISTANCE_BETWEEN_ROUNDS = 0.5;
+		/* Words for pair */
+		this.UPPER = 'UPPER';
+		this.BOTTOM = 'BOTTOM';
 
-	/* Words for pair */
-	this.UPPER = 'UPPER';
-	this.BOTTOM = 'BOTTOM';
+		this.isInited = false;
+		this.CONNECTOR_OFFSET = 15;
 
-	this.isInited = false;
-	this.CONNECTOR_OFFSET = 15;
+		this._buildBracket();
+	}
 	
 	/** Public methods **/
-	
-	this.buildBracket = function () {
+
+	addPlayer(round, pair, part, name) {
+		this._getElementByMatchId(round + '_' + pair + '_' + part)
+		.find('input').val(name);
+	}
+
+	setIsInited(isInited) {
+		this.isInited=isInited;
+
+		if (this.isInited===true) {
+			this.$tournament.removeClass('incomplete');
+			this.$tournament.find('input').attr('readonly', 'readonly');
+		} else {
+			this.$tournament.addClass('incomplete');
+		}
+	}
+
+	/** Private methods **/
+
+	_buildBracket() {
 
 		this.$tournament.append("<div id='connectors'></div>");
 
@@ -53,36 +73,18 @@ function Kuppy(elementId, numberOfPlayers) {
 
 		this._drawWinnerOfCup(round);
 
-	};
-
-	this.addPlayer = function (round, pair, part, name) {
-		this._getElementByMatchId(round + '_' + pair + '_' + part)
-		.find('input').val(name);
-	};
-
-	this.setIsInited = function(isInited) {
-		that.isInited=isInited;
-
-		if (that.isInited===true) {
-			that.$tournament.removeClass('incomplete');
-			that.$tournament.find('input').attr('readonly', 'readonly');
-		} else {
-			that.$tournament.addClass('incomplete');
-		}
 	}
 
-	/** Private methods **/
-
-	this._getElementByMatchId = function (matchId) {
+	_getElementByMatchId(matchId) {
 		return $('div[id="' + matchId + '"]');
-	};
+	}
 
-	this._getCoordinatesByMatchId = function (matchId) {
+	_getCoordinatesByMatchId(matchId) {
 		var $element = this._getElementByMatchId(matchId);
 		return this._getCoordinates($element);
-	};
+	}
 
-	this._getCoordinates = function ($element) {
+	_getCoordinates($element) {
 
 		var x = $element.offset().left - this.$tournament.offset().left + $element.width();
 		var y = $element.offset().top - this.$tournament.offset().top + $element.height() / 2.0;
@@ -91,9 +93,9 @@ function Kuppy(elementId, numberOfPlayers) {
 			x : x,
 			y : y
 		};
-	};
+	}
 
-	this._getCoordinatesCss = function ($element) {
+	_getCoordinatesCss($element) {
 
 		var x = $element.offset().left + $element.width();
 		var y = parseInt($element.css('top'))
@@ -102,9 +104,9 @@ function Kuppy(elementId, numberOfPlayers) {
 			x : x,
 			y : y
 		}
-	};
+	}
 
-	this._addConnector = function (matchId1, matchId2, longVersion) {
+	_addConnector(matchId1, matchId2, longVersion) {
 
 		var offset = 0;
 
@@ -134,9 +136,9 @@ function Kuppy(elementId, numberOfPlayers) {
 		}
 
 		$connector.appendTo($('#connectors'));
-	};
+	}
 
-	this._drawPair = function (round, pair) {
+	_drawPair(round, pair) {
 
 		// First round does not have connectors
 		if (round === 1) {
@@ -145,9 +147,9 @@ function Kuppy(elementId, numberOfPlayers) {
 			this._drawPairForRound(round, pair);
 		}
 
-	};
+	}
 
-	this._drawWinnerOfCup = function (round) {
+	_drawWinnerOfCup(round) {
 		var parents = this._getParentsId(round, 1, this.UPPER, true);
 		this._drawWinner(round, 1, this.UPPER, parents, true);
 
@@ -155,9 +157,9 @@ function Kuppy(elementId, numberOfPlayers) {
 			this._getId(parents.a.round, parents.a.pair, this.UPPER),
 			this._getId(parents.b.round, parents.b.pair, this.BOTTOM)
 		);
-	};
+	}
 
-	this._drawWinner = function (round, pair, upperBottom, parents, isWinnerOfCup) {
+	_drawWinner(round, pair, upperBottom, parents, isWinnerOfCup) {
 
 		var $element = this._createPlayerBoxElement(round, pair, upperBottom);
 		$element.appendTo(this.$tournament);
@@ -182,9 +184,9 @@ function Kuppy(elementId, numberOfPlayers) {
 		.css('left', (first_coords.x + second_coords.x) * this.DISTANCE_BETWEEN_ROUNDS + roundOffset + 'px')
 		.css('top', (first_coords.y + second_coords.y) * this.DISTANCE_BETWEEN_ROUNDS + offset_y + 'px');
 
-	};
+	}
 
-	this._getParentsId = function (ownRound, ownPair, upperBottom, isWinnerOfCup) {
+	_getParentsId(ownRound, ownPair, upperBottom, isWinnerOfCup) {
 
 		var parentRound = ownRound - 1;
 		var parentPair = ownPair * 2;
@@ -213,13 +215,13 @@ function Kuppy(elementId, numberOfPlayers) {
 			};
 		}
 
-	};
+	}
 
-	this._getId = function(round, pair, upperBottom) {
+	_getId(round, pair, upperBottom) {
 		return round + '_' + pair + '_' + upperBottom;
 	}
 
-	this._createPlayerBoxElement = function(round, pair, upperBottom) {
+	_createPlayerBoxElement(round, pair, upperBottom) {
 		var generated_id = this._getId(round, pair, upperBottom);
 		var $element= $('<div id="' + generated_id + '" round="'+round+'" pair="'+pair+'" upperBottom="'+upperBottom+'" class="box"><input class="name"></div>');
 
@@ -233,14 +235,14 @@ function Kuppy(elementId, numberOfPlayers) {
 		return $element;
 	}
 
-	this._addClickListenerForProceedingToNextLevel = function($element) {
+	_addClickListenerForProceedingToNextLevel($element) {
 		var that=this;
 		$element.on('click', function() {
-			if (that.isInited) {
+			if (this.isInited) {
 				var round = parseInt($(this).attr('round'));
 				var pair = parseInt($(this).attr('pair'));
 				var upperBottom = $(this).attr('upperBottom');
-				var otherUpperBottom = upperBottom == that.UPPER ? that.BOTTOM : that.UPPER;
+				var otherUpperBottom = upperBottom == this.UPPER ? this.BOTTOM : this.UPPER;
 				
 				var name = $(this).find('input').val();
 
@@ -248,20 +250,20 @@ function Kuppy(elementId, numberOfPlayers) {
 				var nextPair = Math.ceil(pair/2);
 				var nextUpperBottom;
 				if (pair % 2 == 0) {
-					nextUpperBottom = that.BOTTOM;
+					nextUpperBottom = this.BOTTOM;
 				} else {
-					nextUpperBottom = that.UPPER;
+					nextUpperBottom = this.UPPER;
 				}
 
-				that.addPlayer(nextRound, nextPair, nextUpperBottom, name);
-				$('#' + that._getId(round, pair, otherUpperBottom)).addClass('knocked-out');
+				this.addPlayer(nextRound, nextPair, nextUpperBottom, name);
+				$('#' + this._getId(round, pair, otherUpperBottom)).addClass('knocked-out');
 				$element.removeClass('knocked-out');
 				
 			}
 		});
 	}
 
-	this._drawPairForFirstRound = function (round, pair) {
+	_drawPairForFirstRound(round, pair) {
 
 		var $firstPlayer = this._createPlayerBoxElement(round, pair, this.UPPER);
 		var $secondPlayer = this._createPlayerBoxElement(round, pair, this.BOTTOM);
@@ -275,7 +277,7 @@ function Kuppy(elementId, numberOfPlayers) {
 		var elementHeight = $firstPlayer.height();
 		var elementWidth = $firstPlayer.width();
 
-		// TODO Maybe do this better...
+		// TODO This needs work
 		var multiplyFactor = 0;
 		if (pair >= 3 ) {
 			multiplyFactor+=1;
@@ -310,9 +312,9 @@ function Kuppy(elementId, numberOfPlayers) {
 
 		$secondPlayer
 		.css('top', offset_second_y + 'px');
-	};
+	}
 
-	this._drawPairForRound = function (round, pair) {
+	_drawPairForRound(round, pair) {
 
 		var a_parents = this._getParentsId(round, pair, this.UPPER, false);
 		var b_parents = this._getParentsId(round, pair, this.BOTTOM, false);
@@ -326,8 +328,6 @@ function Kuppy(elementId, numberOfPlayers) {
 		);
 
 
-	};
+	}
 
 }
-
-export default Kuppy;

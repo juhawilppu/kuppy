@@ -19,7 +19,7 @@ I needed a way to render the tournament bracket, but there were no good open-sou
 - Supports any power-of-two number of players (4, 8, 16, 32, …)
 - Add players programmatically
 - Advance winners by clicking on their names
-- Pure JavaScript — no dependencies
+- Requires jQuery
 
 ### 📺 Demo
 
@@ -27,17 +27,35 @@ I needed a way to render the tournament bracket, but there were no good open-sou
 
 ### 🚀 Usage
 
-```js
-const kuppy = new Kuppy('#tournament', 8);
-kuppy.buildBracket();
-
-kuppy.addPlayer(1, 1, 'UPPER', 'Jake');
-kuppy.addPlayer(1, 1, 'BOTTOM', 'Patrick');
-// ...
-```
-
-### 📦 Install via npm
+Install via npm
 
 ```bash
 npm install @juhawilppu/kuppy
 ```
+
+Add DOM element
+```html
+<div id="tournament"></div>
+```
+
+Then use
+
+```js
+import kuppy from '@juhawilppu/kuppy';
+const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: 8 });
+
+bracket.addPlayer(1, 1, 'UPPER', 'Jake');
+bracket.addPlayer(1, 1, 'BOTTOM', 'Patrick');
+// ...
+```
+
+### How to develop locally
+
+To work on kuppy locally:
+
+```bash
+npm install
+npx vite demo
+```
+
+This starts a local dev server at http://localhost:5173/ and opens the demo page.

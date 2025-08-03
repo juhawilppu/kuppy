@@ -5,7 +5,8 @@
   "description": "Minimal JS library for rendering cup brackets",
   "main": "src/kuppy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.cjs"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/juhawilppu/kuppy/issues"
   },
-  "homepage": "https://github.com/juhawilppu/kuppy#readme"
+  "homepage": "https://github.com/juhawilppu/kuppy#readme",
+  "devDependencies": {
+    "esbuild": "^0.25.8",
+    "vite": "^7.0.6"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
 }
