@@ -280,33 +280,7 @@ export default class Kuppy {
 		var elementHeight = $firstPlayer.height();
 		var elementWidth = $firstPlayer.width();
 
-		// TODO This needs work
-		var multiplyFactor = 0;
-		if (pair >= 3) {
-			multiplyFactor += 1;
-		}
-		if (pair >= 5) {
-			multiplyFactor += 2;
-		}
-		if (pair >= 7) {
-			multiplyFactor += 1;
-		}
-		if (pair >= 9) {
-			multiplyFactor += 4;
-		}
-		if (pair >= 11) {
-			multiplyFactor += 1;
-		}
-		if (pair >= 13) {
-			multiplyFactor += 2;
-		}
-		if (pair >= 15) {
-			multiplyFactor += 1;
-		}
-
-		this.EXTRA_DISTANCE = 55;
-
-		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS) + multiplyFactor * this.EXTRA_DISTANCE;
+		var offset_first_y = (pair - 1) * (elementHeight * this.DISTANCE_BETWEEN_PAIRS);
 		var offset_second_y = offset_first_y + elementHeight + this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR;
 
 
