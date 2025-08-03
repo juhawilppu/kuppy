@@ -4,7 +4,7 @@
 
 .kuppy .box {
 
-	text-align: center;
+	text-align: left;
 	vertical-align: middle;
 
 	border: 2px solid #222;
@@ -52,12 +52,13 @@
 .kuppy .box input {
 	background: transparent;
     border: none;
-	height: 90%;
-	width: 90%;
-	text-align: center;
+	outline: none;
+	width: 100%;
+	text-align: left;
 	font-family: 'Rubik', sans-serif;
 	font-weight: 500;
 	font-size:15px;
+	padding-left: 10px;
 	color: #222;
 }
 
