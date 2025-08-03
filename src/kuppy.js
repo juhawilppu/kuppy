@@ -126,17 +126,17 @@ export default class Kuppy {
 		if (coords2.y - coords1.y < 50) {
 			$connector
 				.css('height', 1 + 'px')
-				.css('width', (100 + offset) + 'px')
+				.css('width', (this.BOX_WIDTH + offset) + 'px')
 				.css('top', coords1.y + this.CONNECTOR_OFFSET)
-				.css('left', (coords1.x - offset - 5));
+				.css('left', (coords1.x - offset));
 
 			$connector.addClass('single-line-connector');
 		} else {
 			$connector
 				.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET * 2 - this.BORDER_WIDTH) + 'px')
-				.css('width', (100 + offset) + 'px')
+				.css('width', (this.BOX_WIDTH + offset) + 'px')
 				.css('top', coords1.y + this.CONNECTOR_OFFSET)
-				.css('left', (coords1.x - offset - 5))
+				.css('left', (coords1.x - offset))
 		}
 
 		$connector.appendTo($('#connectors'));
