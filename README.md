@@ -25,29 +25,41 @@ I needed a way to render the tournament bracket, but there were no good open-sou
 
 ### 🚀 Usage
 
-Install via npm
+Install via npm:
 
 ```bash
 npm install @juhawilppu/kuppy
 ```
 
-Add DOM element
+Add a container element:
 ```html
 <div id="tournament"></div>
 ```
 
-Then use
+Import and initialize Kuppy:
 
 ```js
-import kuppy from '@juhawilppu/kuppy';
+import Kuppy from '@juhawilppu/kuppy';
 import '@juhawilppu/kuppy/dist/kuppy.css';
 
-const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: 8 });
+const bracket = new Kuppy({
+    elementId: '#tournament',
+    numberOfPlayers: 8 
+});
+```
 
+Add players by specifying their round, pair and position:
+
+```js
 bracket.addPlayer(1, 1, 'UPPER', 'Jake');
 bracket.addPlayer(1, 1, 'BOTTOM', 'Patrick');
-// ...
 ```
+
+`addPlayer(round, pair, position, name)`
+- `round`: Round number (starting from `1`)
+- `pair`: Pair number within the round (starting from `1`)
+- `position`: `UPPER` or `BOTTOM` (top or bottom in the pair)
+- `name`: Name of the player or team
 
 ### 👨🏻‍💻 How to develop locally
 
