@@ -17,6 +17,9 @@ export default class Kuppy {
 		/* Distance (px) between two players that form a pair. */
 		this.DISTANCE_BETWEEN_PLAYERS_IN_A_PAIR = 0;
 
+		/* Width of box and connector borders. Needs to match CSS. */
+		this.BORDER_WIDTH = 2;
+
 		/* Distance between two pairs. */
 		this.DISTANCE_BETWEEN_PAIRS = 3;
 
@@ -131,7 +134,7 @@ export default class Kuppy {
 			$connector.addClass('single-line-connector');
 		} else {
 			$connector
-				.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET * 2 - 1) + 'px')
+				.css('height', (coords2.y - coords1.y - this.CONNECTOR_OFFSET * 2 - this.BORDER_WIDTH) + 'px')
 				.css('width', (100 + offset) + 'px')
 				.css('top', coords1.y + this.CONNECTOR_OFFSET)
 				.css('left', (coords1.x - offset - 5))
