@@ -38,6 +38,8 @@ Then use
 
 ```js
 import kuppy from '@juhawilppu/kuppy';
+import '@juhawilppu/kuppy/dist/kuppy.css';
+
 const bracket = new kuppy({ elementId: '#tournament', numberOfPlayers: 8 });
 
 bracket.addPlayer(1, 1, 'UPPER', 'Jake');
