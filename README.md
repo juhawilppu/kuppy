@@ -1,8 +1,6 @@
 # Kuppy
 
-**Kuppy** is a lightweight JavaScript library for building interactive cup brackets (e.g. 16-player single elimination).
-
-It lets you programmatically or interactively move players through the rounds.
+**Kuppy** is a lightweight JavaScript library for building interactive cup brackets (e.g. 16-player single elimination). It lets you programmatically or interactively move players through the rounds.
 
 Originally built in 2013. Refined in 2025.
 
